@@ -1,0 +1,83 @@
+[gd_scene load_steps=9 format=3 uid="uid://bq71s72gpl80u"]
+
+[ext_resource type="Script" path="res://load_game/load_game.gd" id="1_by0s1"]
+[ext_resource type="Texture2D" uid="uid://bwi4x6re1nk48" path="res://main_menu/background.png" id="1_eqx0a"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ibc07"]
+texture = ExtResource("1_eqx0a")
+modulate_color = Color(0.635294, 0.635294, 0.635294, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_jxpbg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dfpck"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_73is4"]
+bg_color = Color(1, 1, 1, 0.223529)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.184314)
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_12qpk"]
+bg_color = Color(1, 1, 1, 0.223529)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.184314)
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vbpc2"]
+bg_color = Color(1, 1, 1, 0.509804)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.184314)
+shadow_size = 5
+
+[node name="LoadGame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_by0s1")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ibc07")
+
+[node name="BackToMainMenuButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -134.5
+offset_top = -26.5
+offset_right = 134.5
+offset_bottom = 26.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("SystemFont_jxpbg")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dfpck")
+theme_override_styles/hover = SubResource("StyleBoxFlat_73is4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_12qpk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vbpc2")
+text = "Back"
+
+[connection signal="pressed" from="Panel/BackToMainMenuButton" to="." method="_on_back_to_main_menu_button_pressed"]
