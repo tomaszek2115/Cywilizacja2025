@@ -1,0 +1,26 @@
+fc8a56933c4b1c8d796fdb8f7a9f9475
+::res://::1731882619
+logo.png::CompressedTexture2D::8340463467818005932::1731851941::1731851947::1::::<><>::
+::res://assets/::1731882619
+background.png::CompressedTexture2D::8685990302166458062::1731851529::1731853964::1::::<><>::
+characters.png::CompressedTexture2D::8185284812709890078::1731854384::1731854384::1::::<><>::
+piece_move.png::CompressedTexture2D::1929116176379688389::1731871765::1731871769::1::::<><>::
+portrait_kamil.png::CompressedTexture2D::6989507947959917077::1731857634::1731857645::1::::<><>::
+portrait_ola.png::CompressedTexture2D::4627754623330670863::1731854910::1731854910::1::::<><>::
+portrait_tomek.png::CompressedTexture2D::8304862502991757562::1731854910::1731854910::1::::<><>::
+portrait_zuzia.png::CompressedTexture2D::3973306558600406735::1731857773::1731857776::1::::<><>::
+tiles.png::CompressedTexture2D::2466623365321419553::1731854401::1731854401::1::::<><>::
+tiles_square.png::CompressedTexture2D::8600931390765502573::1731856107::1731856107::1::::<><>::
+turn_blue.png::CompressedTexture2D::1589228191186408248::1731855178::1731855178::1::::<><>::
+turn_red.png::CompressedTexture2D::8641149069335816424::1731855178::1731855178::1::::<><>::
+units.png::CompressedTexture2D::8606596636880528191::1731852032::1731853968::1::::<><>::
+::res://main_menu/::1731882619
+American Captain.ttf::FontFile::2573767805957759170::1731851529::1731882619::1::::<><>::
+background.png::CompressedTexture2D::3948893786514871275::1731851529::1731882620::1::::<><>::
+main_menu.gd::GDScript::-1::1731851529::0::1::::<>Control<>::
+main_menu.tscn::PackedScene::1147967141800819311::1731882619::0::1::::<><>::res://main_menu/main_menu.gd<>uid://bwi4x6re1nk48::::res://main_menu/background.png<>uid://bcw0tyf1wt10q::::res://main_menu/American Captain.ttf
+::res://scenes/::1731881152
+board.tscn::PackedScene::4646792946053671225::1731881152::0::1::::<><>::uid://dv0s8x4urndpm::::res://assets/background.png<>res://scenes/civilization2050.gd
+civilization2050.gd::GDScript::-1::1731881139::0::1::::<>Sprite2D<>::
+main.tscn::PackedScene::22649474305072335::1731881152::0::1::::<><>::uid://b7g7abca3g6j2::::res://scenes/board.tscn<>uid://dusmc3nysr45v::::res://assets/tiles_square.png
+texture_holder.tscn::PackedScene::2114493770940470896::1731881152::0::1::::<><>::
