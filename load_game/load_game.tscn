@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bq71s72gpl80u"]
+[gd_scene load_steps=13 format=3 uid="uid://bq71s72gpl80u"]
 
 [ext_resource type="Script" path="res://load_game/load_game.gd" id="1_by0s1"]
 [ext_resource type="Texture2D" uid="uid://bwi4x6re1nk48" path="res://main_menu/background.png" id="1_eqx0a"]
@@ -41,6 +41,14 @@ corner_radius_bottom_left = 16
 shadow_color = Color(0, 0, 0, 0.184314)
 shadow_size = 5
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m8l2n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fuc5a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ppsfj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_232tr"]
+
 [node name="LoadGame" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -80,4 +88,22 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_12qpk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_vbpc2")
 text = "Back"
 
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -948.0
+offset_top = 11.0
+offset_right = -895.0
+offset_bottom = 57.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 33
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m8l2n")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_fuc5a")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ppsfj")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_232tr")
+text = "⬅️"
+
 [connection signal="pressed" from="Panel/BackToMainMenuButton" to="." method="_on_back_to_main_menu_button_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_back_to_main_menu_button_pressed"]
