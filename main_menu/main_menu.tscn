@@ -1,49 +1,78 @@
-[gd_scene load_steps=15 format=3 uid="uid://qmc3643y7il0"]
+[gd_scene load_steps=14 format=3 uid="uid://qmc3643y7il0"]
 
 [ext_resource type="Script" path="res://main_menu/main_menu.gd" id="1_8ucbh"]
 [ext_resource type="Texture2D" uid="uid://bwi4x6re1nk48" path="res://main_menu/background.png" id="2_71jcr"]
-[ext_resource type="FontFile" uid="uid://bcw0tyf1wt10q" path="res://main_menu/American Captain.ttf" id="3_jbupb"]
+[ext_resource type="FontFile" uid="uid://cxj6nthf45cpg" path="res://main_menu/upheavtt.ttf" id="3_b3kol"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6l01l"]
 texture = ExtResource("2_71jcr")
-modulate_color = Color(0.633757, 0.633757, 0.633757, 1)
+modulate_color = Color(0.446777, 0.446777, 0.446777, 1)
 
-[sub_resource type="SystemFont" id="SystemFont_d3ixl"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x2wjq"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6s2ah"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u4xyh"]
-bg_color = Color(1, 1, 1, 0.223529)
-border_color = Color(0.8, 0.8, 0.8, 0)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_unp0a"]
+bg_color = Color(1, 1, 1, 0.470588)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
-shadow_color = Color(0, 0, 0, 0.184314)
-shadow_size = 5
+shadow_color = Color(0.0962047, 0.0962048, 0.0962047, 0.392157)
+shadow_size = 3
 shadow_offset = Vector2(0, 3)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ii0fd"]
-bg_color = Color(1, 1, 1, 0.509804)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ibybp"]
+bg_color = Color(1, 1, 1, 0.392157)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
-shadow_color = Color(0, 0, 0, 0.184314)
-shadow_size = 5
+shadow_color = Color(0.0962047, 0.0962048, 0.0962047, 0.392157)
+shadow_size = 3
 shadow_offset = Vector2(0, 3)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nmuee"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v21ne"]
+bg_color = Color(1, 1, 1, 0.392157)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.0962047, 0.0962048, 0.0962047, 0.392157)
+shadow_size = 3
+shadow_offset = Vector2(0, 3)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n2yv8"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ktaqg"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d61ci"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xywyd"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y0frq"]
+bg_color = Color(1, 1, 1, 0.470588)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.392157)
+shadow_size = 2
+shadow_offset = Vector2(0, 2)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8hsf1"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_crrff"]
+bg_color = Color(1, 1, 1, 0.392157)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.392157)
+shadow_size = 2
+shadow_offset = Vector2(0, 2)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3eaf8"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sn7q7"]
+bg_color = Color(1, 1, 1, 0.392157)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.392157)
+shadow_size = 2
+shadow_offset = Vector2(0, 2)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -64,81 +93,96 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_6l01l")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -134.5
-offset_top = -5.0
-offset_right = 134.5
-offset_bottom = 138.0
+offset_left = -179.5
+offset_top = -7.0
+offset_right = 179.5
+offset_bottom = 154.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 36
+theme_override_constants/separation = 20
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="btnNewGame" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_fonts/font = SubResource("SystemFont_d3ixl")
-theme_override_font_sizes/font_size = 21
-theme_override_styles/focus = SubResource("StyleBoxEmpty_6s2ah")
-theme_override_styles/hover = SubResource("StyleBoxFlat_u4xyh")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_u4xyh")
-theme_override_styles/normal = SubResource("StyleBoxFlat_ii0fd")
-text = "New Game"
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_b3kol")
+theme_override_font_sizes/font_size = 38
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x2wjq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_unp0a")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ibybp")
+theme_override_styles/normal = SubResource("StyleBoxFlat_v21ne")
+text = "new game"
 
-[node name="Button2" type="Button" parent="VBoxContainer"]
+[node name="btnLoadGame" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_fonts/font = SubResource("SystemFont_d3ixl")
-theme_override_font_sizes/font_size = 21
-theme_override_styles/focus = SubResource("StyleBoxEmpty_nmuee")
-theme_override_styles/hover = SubResource("StyleBoxFlat_u4xyh")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_u4xyh")
-theme_override_styles/normal = SubResource("StyleBoxFlat_ii0fd")
-text = "Load Game"
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_b3kol")
+theme_override_font_sizes/font_size = 38
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x2wjq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_unp0a")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ibybp")
+theme_override_styles/normal = SubResource("StyleBoxFlat_v21ne")
+text = "load game"
 
-[node name="Label" type="Label" parent="."]
+[node name="gameTitle" type="Label" parent="."]
 material = SubResource("ShaderMaterial_n2yv8")
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -262.0
-offset_top = 114.0
-offset_right = 262.0
-offset_bottom = 207.0
+anchor_bottom = 0.5
+offset_left = -360.5
+offset_top = -126.0
+offset_right = 360.5
+offset_bottom = -35.0
 grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.32549)
 theme_override_constants/line_spacing = 23
 theme_override_constants/shadow_offset_x = 6
 theme_override_constants/shadow_offset_y = 4
-theme_override_fonts/font = ExtResource("3_jbupb")
-theme_override_font_sizes/font_size = 85
+theme_override_fonts/font = ExtResource("3_b3kol")
+theme_override_font_sizes/font_size = 70
 text = "Civilizantion 2050"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="."]
+[node name="btnSettings" type="Button" parent="."]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -74.0
-offset_top = 16.0
-offset_right = -21.0
+offset_left = -199.0
+offset_top = 23.0
+offset_right = -20.0
 offset_bottom = 70.0
 grow_horizontal = 0
-theme_override_font_sizes/font_size = 33
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ktaqg")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_xywyd")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_8hsf1")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_3eaf8")
-text = "⚙️"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_b3kol")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_d61ci")
+theme_override_styles/hover = SubResource("StyleBoxFlat_y0frq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_crrff")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sn7q7")
+text = "settings"
+icon_alignment = 1
 
-[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_newGame_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_loadGame_pressed"]
-[connection signal="pressed" from="Button" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/btnNewGame" to="." method="_on_btn_new_game_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/btnLoadGame" to="." method="_on_btn_load_game_pressed"]
+[connection signal="pressed" from="btnSettings" to="." method="_on_btn_settings_pressed"]

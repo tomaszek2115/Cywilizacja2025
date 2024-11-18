@@ -10,13 +10,13 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
-func _on_newGame_pressed() -> void:
+func _on_btn_new_game_pressed() -> void:
+	get_tree().change_scene_to_file("res://new_game/new_game.tscn")
 	print("New Game pressed")
-	#get_tree().change_scene_to_file()
+	 # Replace with function body.
 
-func _on_loadGame_pressed() -> void:
-	print("Load Game pressed")
+func _on_btn_load_game_pressed() -> void:
+	print("Load Game pressed") # Replace with function body.
 
-func _on_settings_pressed() -> void:
-	get_tree().quit() #potem sie doda reszte
+func _on_btn_settings_pressed() -> void:
+	print("Settings pressed") # Replace with function body.
