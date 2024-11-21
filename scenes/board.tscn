@@ -14,3 +14,4 @@ script = ExtResource("2_8h7o6")
 [node name="turn" type="Sprite2D" parent="."]
 
 [node name="dots" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0.588235)

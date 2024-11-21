@@ -1,0 +1,144 @@
+[gd_scene load_steps=15 format=3 uid="uid://qmc3643y7il0"]
+
+[ext_resource type="Script" path="res://main_menu/main_menu.gd" id="1_8ucbh"]
+[ext_resource type="Texture2D" uid="uid://bwi4x6re1nk48" path="res://main_menu/background.png" id="2_71jcr"]
+[ext_resource type="FontFile" uid="uid://bcw0tyf1wt10q" path="res://main_menu/American Captain.ttf" id="3_jbupb"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6l01l"]
+texture = ExtResource("2_71jcr")
+modulate_color = Color(0.633757, 0.633757, 0.633757, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_d3ixl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6s2ah"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u4xyh"]
+bg_color = Color(1, 1, 1, 0.223529)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.184314)
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ii0fd"]
+bg_color = Color(1, 1, 1, 0.509804)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.184314)
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nmuee"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n2yv8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ktaqg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xywyd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8hsf1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3eaf8"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8ucbh")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_6l01l")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -134.5
+offset_top = -5.0
+offset_right = 134.5
+offset_bottom = 138.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 36
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = SubResource("SystemFont_d3ixl")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6s2ah")
+theme_override_styles/hover = SubResource("StyleBoxFlat_u4xyh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_u4xyh")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ii0fd")
+text = "New Game"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = SubResource("SystemFont_d3ixl")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/focus = SubResource("StyleBoxEmpty_nmuee")
+theme_override_styles/hover = SubResource("StyleBoxFlat_u4xyh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_u4xyh")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ii0fd")
+text = "Load Game"
+
+[node name="Label" type="Label" parent="."]
+material = SubResource("ShaderMaterial_n2yv8")
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -262.0
+offset_top = 114.0
+offset_right = 262.0
+offset_bottom = 207.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.32549)
+theme_override_constants/line_spacing = 23
+theme_override_constants/shadow_offset_x = 6
+theme_override_constants/shadow_offset_y = 4
+theme_override_fonts/font = ExtResource("3_jbupb")
+theme_override_font_sizes/font_size = 85
+text = "Civilizantion 2050"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -74.0
+offset_top = 16.0
+offset_right = -21.0
+offset_bottom = 70.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 33
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ktaqg")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_xywyd")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8hsf1")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3eaf8")
+text = "⚙️"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_newGame_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_loadGame_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_settings_pressed"]
