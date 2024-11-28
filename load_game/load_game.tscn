@@ -1,11 +1,28 @@
-[gd_scene load_steps=13 format=3 uid="uid://bq71s72gpl80u"]
+[gd_scene load_steps=18 format=3 uid="uid://bq71s72gpl80u"]
 
 [ext_resource type="Script" path="res://load_game/load_game.gd" id="1_by0s1"]
 [ext_resource type="Texture2D" uid="uid://bwi4x6re1nk48" path="res://main_menu/background.png" id="1_eqx0a"]
+[ext_resource type="FontFile" uid="uid://bcw0tyf1wt10q" path="res://main_menu/American Captain.ttf" id="3_rdvqq"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ibc07"]
 texture = ExtResource("1_eqx0a")
 modulate_color = Color(0.635294, 0.635294, 0.635294, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m8l2n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fuc5a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ppsfj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_232tr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6kw3c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fxj7o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hmopm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_na8ed"]
 
 [sub_resource type="SystemFont" id="SystemFont_jxpbg"]
 
@@ -41,14 +58,6 @@ corner_radius_bottom_left = 16
 shadow_color = Color(0, 0, 0, 0.184314)
 shadow_size = 5
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m8l2n"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fuc5a"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ppsfj"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_232tr"]
-
 [node name="LoadGame" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -58,7 +67,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_by0s1")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="BackGroundLabel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -67,37 +76,30 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_ibc07")
 
-[node name="BackToMainMenuButton" type="Button" parent="Panel"]
+[node name="LoadGameLabel" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -134.5
-offset_top = -26.5
-offset_right = 134.5
-offset_bottom = 26.5
+offset_left = -149.0
+offset_top = 41.0
+offset_right = 149.0
+offset_bottom = 127.0
 grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = SubResource("SystemFont_jxpbg")
-theme_override_font_sizes/font_size = 21
-theme_override_styles/focus = SubResource("StyleBoxEmpty_dfpck")
-theme_override_styles/hover = SubResource("StyleBoxFlat_73is4")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_12qpk")
-theme_override_styles/normal = SubResource("StyleBoxFlat_vbpc2")
-text = "Back"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.32549)
+theme_override_constants/line_spacing = 23
+theme_override_constants/shadow_offset_x = 6
+theme_override_constants/shadow_offset_y = 4
+theme_override_fonts/font = ExtResource("3_rdvqq")
+theme_override_font_sizes/font_size = 85
+text = "Load Game"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Button" type="Button" parent="."]
+[node name="BackButton" type="Button" parent="."]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -948.0
-offset_top = 11.0
-offset_right = -895.0
-offset_bottom = 57.0
-grow_horizontal = 0
+offset_right = 53.0
+offset_bottom = 46.0
 theme_override_font_sizes/font_size = 33
 theme_override_styles/focus = SubResource("StyleBoxEmpty_m8l2n")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_fuc5a")
@@ -105,5 +107,42 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_ppsfj")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_232tr")
 text = "⬅️"
 
-[connection signal="pressed" from="Panel/BackToMainMenuButton" to="." method="_on_back_to_main_menu_button_pressed"]
-[connection signal="pressed" from="Button" to="." method="_on_back_to_main_menu_button_pressed"]
+[node name="SettingsButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -53.0
+offset_bottom = 54.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 33
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6kw3c")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_fxj7o")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hmopm")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_na8ed")
+text = "⚙️"
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -134.5
+offset_top = -106.0
+offset_right = 134.5
+offset_bottom = -53.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = SubResource("SystemFont_jxpbg")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dfpck")
+theme_override_styles/hover = SubResource("StyleBoxFlat_73is4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_12qpk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vbpc2")
+text = "Start"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_to_main_menu_button_pressed"]
+[connection signal="pressed" from="SettingsButton" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
