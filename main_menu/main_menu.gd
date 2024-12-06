@@ -19,4 +19,4 @@ func _on_loadGame_pressed() -> void:
 	print("Load Game pressed")
 
 func _on_settings_pressed() -> void:
-	print("Load Game pressed")
+	get_tree().quit() #potem sie doda reszte

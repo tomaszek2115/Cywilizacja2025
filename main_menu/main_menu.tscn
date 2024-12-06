@@ -41,7 +41,7 @@ shadow_offset = Vector2(0, 3)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xywyd"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wocnv"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8hsf1"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3eaf8"]
 
@@ -135,7 +135,7 @@ grow_horizontal = 0
 theme_override_font_sizes/font_size = 33
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ktaqg")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_xywyd")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_wocnv")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8hsf1")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_3eaf8")
 text = "⚙️"
 
