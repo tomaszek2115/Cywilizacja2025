@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://j825f4rbgqe0"]
 
-[ext_resource type="Texture2D" uid="uid://bwux1p7ww7kh0" path="res://game/portrait_zuzia.png" id="1_46p5f"]
+[ext_resource type="Texture2D" uid="uid://bwux1p7ww7kh0" path="res://assets/portrait_zuzia.png" id="1_46p5f"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ebh8u"]
 radius = 14.0

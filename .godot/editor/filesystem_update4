@@ -2,4 +2,7 @@ res://scenes/main.tscn
 res://scenes/board.tscn
 res://scenes/texture_holder.tscn
 res://main_menu/main_menu.tscn
+res://settings/Settings.tscn
 res://scenes/civilization2050.gd
+res://scenes/character_zuzia.tscn
+res://game/game_main.tscn

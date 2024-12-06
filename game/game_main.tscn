@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=4 uid="uid://ck1qn08fudbc2"]
 
-[ext_resource type="Texture2D" uid="uid://dv0s8x4urndpm" path="res://game/background.png" id="1_feaxp"]
-[ext_resource type="Texture2D" uid="uid://bbe36q8exxee8" path="res://game/tiles.png" id="2_1n6sh"]
+[ext_resource type="Texture2D" uid="uid://dv0s8x4urndpm" path="res://assets/background.png" id="1_feaxp"]
+[ext_resource type="Texture2D" uid="uid://bbe36q8exxee8" path="res://assets/tiles.png" id="2_1n6sh"]
 [ext_resource type="PackedScene" uid="uid://j825f4rbgqe0" path="res://scenes/character_zuzia.tscn" id="3_m5y5q"]
 [ext_resource type="Script" path="res://scenes/character_zuzia.gd" id="4_iq5oi"]
 
