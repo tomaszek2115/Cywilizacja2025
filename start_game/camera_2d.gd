@@ -1,28 +1,33 @@
 extends Camera2D
 
-var dragging = false
-var last_mouse_position = Vector2()
+@export var zoomSpeed : float = 10
+
+var zoomTarget : Vector2
+var dragStartCameraPos = Vector2.ZERO
+var dragStartMousePos = Vector2.ZERO
+var isDragging : bool = false
 
 func _ready():
-	# Set camera to follow the target or set it to a fixed position
-	# You can remove the follow target if you just want free dragging
-	self.offset = Vector2()  # Reset any camera offset if needed
+	zoomTarget = zoom
 
-func _input(event):
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			if event.pressed:
-				# Start dragging
-				dragging = true
-				last_mouse_position = event.position
-			else:
-				# Stop dragging
-				dragging = false
+func _process(delta: float):
+	Zoom(delta)
+	ClickAndDrag()
 
-	elif event is InputEventMouseMotion and dragging:
-		# Calculate how much the mouse has moved since the last frame
-		var delta = event.position - last_mouse_position
-		# Move the camera accordingly
-		position -= delta
-		# Update the last mouse position for the next frame
-		last_mouse_position = event.position
+func Zoom(delta):
+	if Input.is_action_just_pressed("camera_zoom_in"):
+		zoomTarget *= 1.1
+	if Input.is_action_just_pressed("camera_zoom_out"):
+		zoomTarget *= 0.9
+	zoom = zoom.slerp(zoomTarget, zoomSpeed * delta)
+
+func ClickAndDrag():
+	if !isDragging and Input.is_action_just_pressed("camera_pan"):
+		dragStartMousePos = get_viewport().get_mouse_position()
+		dragStartCameraPos = position
+		isDragging = true
+	if isDragging and Input.is_action_just_released("camera_pan"):
+		isDragging = false
+	if isDragging:
+		var moveVector = get_viewport().get_mouse_position() - dragStartMousePos
+		position = dragStartCameraPos - moveVector * 1/zoom.x
