@@ -1,0 +1,13 @@
+RichTextLabel
+Control
+Container
+Label
+Button
+AnimationPlayer
+Panel
+CanvasLayer
+ItemList
+Node2D
+TileMapLayer
+Sprite2D
+Camera2D

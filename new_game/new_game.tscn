@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://1n245rpjpjol"]
+
+[ext_resource type="Texture2D" uid="uid://bwi4x6re1nk48" path="res://main_menu/background.png" id="1_yiiex"]
+[ext_resource type="FontFile" uid="uid://cxj6nthf45cpg" path="res://main_menu/upheavtt.ttf" id="2_b235f"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cc03p"]
+texture = ExtResource("1_yiiex")
+modulate_color = Color(0.447059, 0.447059, 0.447059, 1)
+
+[node name="NewGame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_cc03p")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -114.0
+offset_top = -176.0
+offset_right = 114.0
+offset_bottom = -132.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_b235f")
+theme_override_font_sizes/font_size = 48
+text = "new game"

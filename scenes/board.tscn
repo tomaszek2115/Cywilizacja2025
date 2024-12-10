@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7g7abca3g6j2"]
+
+[ext_resource type="Texture2D" uid="uid://dv0s8x4urndpm" path="res://assets/background.png" id="1_m2n3a"]
+[ext_resource type="Script" path="res://scenes/civilization2050.gd" id="2_8h7o6"]
+[ext_resource type="FontFile" uid="uid://bwuiijscie7d2" path="res://assets/upheavtt.ttf" id="3_dfikk"]
+
+[node name="board" type="Sprite2D"]
+position = Vector2(480, 240)
+scale = Vector2(0.24, 0.24)
+texture = ExtResource("1_m2n3a")
+script = ExtResource("2_8h7o6")
+
+[node name="characters" type="Node2D" parent="."]
+
+[node name="turn" type="Sprite2D" parent="."]
+
+[node name="dots" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0.588235)
+
+[node name="score_label" type="RichTextLabel" parent="."]
+offset_left = -816.67
+offset_top = -964.167
+offset_right = 825.33
+offset_bottom = -722.167
+theme_override_fonts/normal_font = ExtResource("3_dfikk")
+theme_override_font_sizes/normal_font_size = 131
+bbcode_enabled = true
