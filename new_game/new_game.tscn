@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://1n245rpjpjol"]
 
 [ext_resource type="Texture2D" uid="uid://bwi4x6re1nk48" path="res://main_menu/background.png" id="1_yiiex"]
-[ext_resource type="FontFile" uid="uid://cxj6nthf45cpg" path="res://main_menu/upheavtt.ttf" id="2_b235f"]
+[ext_resource type="FontFile" uid="uid://52kqfxtygux6" path="res://assets/upheavtt.ttf" id="2_b235f"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cc03p"]
 texture = ExtResource("1_yiiex")
