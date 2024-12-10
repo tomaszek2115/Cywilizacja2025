@@ -217,7 +217,6 @@ func is_stronger(pos : Vector2):
 		var selected_strength = abs(board[selected_piece.x][selected_piece.y]) 
 		var enemy_strength = abs(board[pos.x][pos.y]) 
 		return enemy_strength > selected_strength
-		return "test"
 	return false
 	
 	
