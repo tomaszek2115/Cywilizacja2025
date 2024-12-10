@@ -26,6 +26,8 @@ const PIECE_MOVE = preload("res://assets/piece_move.png")
 @onready var characters = $characters
 @onready var turn = $turn
 @onready var dots = $dots
+@onready var score_label = $score_label
+
 
 #Variables
 var board : Array
@@ -33,6 +35,7 @@ var blue : bool = true #white w szachach also w tym tutorialu i zaczyna
 var state : bool = false #brother said just in case :sob:
 var moves = []
 var selected_piece : Vector2
+var ownership : Array = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void: #ładuje od dołu do góry tak uzupełnia to gówno
@@ -43,6 +46,13 @@ func _ready() -> void: #ładuje od dołu do góry tak uzupełnia to gówno
 	board.append([0,4,0,0,0,0,0,0,0,0,-1,0])
 	board.append([0,0,0,0,0,0,0,0,0,0,0,0])
 	
+	# stworz tabele ownership
+	for i in range(MAP_HEIGHT):
+		var row = []
+		for j in range(MAP_WIDTH):
+			row.append(0)
+		ownership.append(row)
+		
 	display_board()
 	
 func _input(event):
@@ -111,11 +121,74 @@ func set_move(var2, var1):
 			
 			board[var2][var1] = board[selected_piece.x][selected_piece.y]
 			board[selected_piece.x][selected_piece.y] = 0
+			
+			# update ownership
+			if blue:
+				ownership[var2][var1] = 1 # blue captures
+			else:
+				ownership[var2][var1] = -1 # red captures
+					
 			blue = !blue
 			display_board()
+			
+			# update the score display
+			update_score_display()
 			break
 	delete_dots()
 	state = false
+
+func calculate_score():
+	var blue_count = 0
+	var red_count = 0
+	var total_cells = MAP_WIDTH * MAP_HEIGHT
+	
+	for row in ownership:
+		for cell in row:
+			if cell == 1:
+				blue_count +=1
+			elif cell == -1:
+				red_count +=1
+	
+	var blue_percentage = float (blue_count) / total_cells * 100
+	var red_percentage = float(red_count) / total_cells * 100
+	
+	return [blue_percentage, red_percentage]
+	
+func update_score_display():
+	var scores = calculate_score()
+	var blue_percentage = scores[0]
+	var red_percentage = scores[1]
+	
+	#check for win condition
+	if blue_percentage == 100:
+		score_label.bbcode_text = "[center][color=blue]GOOD GAME\nBLUE WINS![/color][/center]"
+		disable_gameplay() # stop further actions
+		return
+	elif red_percentage == 100:
+		score_label.bbcode_text = "[center][color=red]GOOD GAME!\nRED WINS![/color][/center]"
+		disable_gameplay()  # stop further actions
+	
+	# determine turn text based on which player's turn it is
+	var turn_text = "BLUE TURN" if blue else "RED TURN"
+	var turn_color = "[color=blue]" if blue else "[color=red]"
+	
+	# format the text for the label
+	var formatted_text = "[center]"
+	formatted_text += "[color=blue]" + str(round(blue_percentage)) + "%[/color]  "
+	formatted_text += turn_color + turn_text + "[/color]  "
+	formatted_text += "[color=red]" + str(round(red_percentage)) + "%[/color]"
+	formatted_text += "[/center]"
+	score_label.bbcode_text = formatted_text
+	
+
+# Function to stop the gameplay
+func disable_gameplay():
+	# prevent further interactions in the game
+	set_process_input(false)
+	turn.texture = null
+	
+
+
 
 func get_moves():
 	var _moves = []
