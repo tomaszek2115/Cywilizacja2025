@@ -1,10 +1,11 @@
+Label
+Button
+TextureButton
+Panel
 RichTextLabel
 Control
 Container
-Label
-Button
 AnimationPlayer
-Panel
 CanvasLayer
 ItemList
 Node2D

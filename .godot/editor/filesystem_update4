@@ -1,9 +1,3 @@
-res://scenes/main.tscn
 res://scenes/board.tscn
-res://scenes/texture_holder.tscn
-res://main_menu/main_menu.tscn
-res://settings/Settings.tscn
-res://load_game/load_game.tscn
-res://scenes/shop.tscn
-res://new_game/new_game.tscn
 res://scenes/civilization2050.gd
+res://scenes/shop_panel.gd

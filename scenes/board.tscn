@@ -1,8 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7g7abca3g6j2"]
+[gd_scene load_steps=14 format=3 uid="uid://b7g7abca3g6j2"]
 
 [ext_resource type="Texture2D" uid="uid://dv0s8x4urndpm" path="res://assets/background.png" id="1_m2n3a"]
 [ext_resource type="Script" path="res://scenes/civilization2050.gd" id="2_8h7o6"]
 [ext_resource type="FontFile" uid="uid://52kqfxtygux6" path="res://assets/upheavtt.ttf" id="3_6ylen"]
+[ext_resource type="Script" path="res://scenes/shop_panel.gd" id="4_h3otj"]
+[ext_resource type="Texture2D" uid="uid://c3gjw2h77pj1r" path="res://assets/units_blue_1.png" id="4_nx6j8"]
+[ext_resource type="Texture2D" uid="uid://b0mdbjyi6a765" path="res://assets/units_blue_2.png" id="5_epvy4"]
+[ext_resource type="Texture2D" uid="uid://cc0ikakxe8ipk" path="res://assets/units_blue_3.png" id="6_2q6fo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g4133"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5mgri"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_57sd2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_11506"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cw2dt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dh47x"]
 
 [node name="board" type="Sprite2D"]
 position = Vector2(480, 240)
@@ -25,3 +41,154 @@ offset_bottom = -712.16
 theme_override_fonts/normal_font = ExtResource("3_6ylen")
 theme_override_font_sizes/normal_font_size = 131
 bbcode_enabled = true
+
+[node name="shop_panel" type="Panel" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -2925.0
+offset_top = -1450.0
+offset_right = -1075.0
+offset_bottom = -1000.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("4_h3otj")
+
+[node name="button_units1" type="Button" parent="shop_panel"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 300.0
+offset_bottom = 300.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_g4133")
+icon = ExtResource("4_nx6j8")
+icon_alignment = 1
+expand_icon = true
+
+[node name="button_units2" type="Button" parent="shop_panel"]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 50.0
+offset_right = 600.0
+offset_bottom = 300.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5mgri")
+icon = ExtResource("5_epvy4")
+icon_alignment = 1
+expand_icon = true
+
+[node name="button_units3" type="Button" parent="shop_panel"]
+layout_mode = 0
+offset_left = 650.0
+offset_top = 50.0
+offset_right = 900.0
+offset_bottom = 300.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_57sd2")
+icon = ExtResource("6_2q6fo")
+icon_alignment = 1
+expand_icon = true
+
+[node name="button_city1" type="Button" parent="shop_panel"]
+layout_mode = 0
+offset_left = 950.0
+offset_top = 50.0
+offset_right = 1200.0
+offset_bottom = 300.0
+theme_override_font_sizes/font_size = 56
+theme_override_styles/focus = SubResource("StyleBoxEmpty_11506")
+text = "city1"
+icon_alignment = 1
+
+[node name="button_city2" type="Button" parent="shop_panel"]
+layout_mode = 0
+offset_left = 1250.0
+offset_top = 50.0
+offset_right = 1500.0
+offset_bottom = 300.0
+theme_override_font_sizes/font_size = 56
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cw2dt")
+text = "city2"
+
+[node name="button_city3" type="Button" parent="shop_panel"]
+layout_mode = 0
+offset_left = 1550.0
+offset_top = 50.0
+offset_right = 1800.0
+offset_bottom = 300.0
+theme_override_font_sizes/font_size = 56
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dh47x")
+text = "city3"
+
+[node name="Label" type="Label" parent="shop_panel"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 340.0
+offset_right = 300.0
+offset_bottom = 409.0
+theme_override_font_sizes/font_size = 50
+text = "100$"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="shop_panel"]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 340.0
+offset_right = 600.0
+offset_bottom = 409.0
+theme_override_font_sizes/font_size = 50
+text = "150$"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="shop_panel"]
+layout_mode = 0
+offset_left = 650.0
+offset_top = 340.0
+offset_right = 900.0
+offset_bottom = 409.0
+theme_override_font_sizes/font_size = 50
+text = "200$"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="shop_panel"]
+layout_mode = 0
+offset_left = 950.0
+offset_top = 340.0
+offset_right = 1200.0
+offset_bottom = 409.0
+theme_override_font_sizes/font_size = 50
+text = "100$"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label5" type="Label" parent="shop_panel"]
+layout_mode = 0
+offset_left = 1250.0
+offset_top = 340.0
+offset_right = 1500.0
+offset_bottom = 409.0
+theme_override_font_sizes/font_size = 50
+text = "175$"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label6" type="Label" parent="shop_panel"]
+layout_mode = 0
+offset_left = 1550.0
+offset_top = 340.0
+offset_right = 1800.0
+offset_bottom = 409.0
+theme_override_font_sizes/font_size = 50
+text = "250$"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="shop_panel/button_units1" to="shop_panel" method="_on_button_units_1_pressed"]
+[connection signal="pressed" from="shop_panel/button_units2" to="shop_panel" method="_on_button_units_2_pressed"]
+[connection signal="pressed" from="shop_panel/button_units3" to="shop_panel" method="_on_button_units_3_pressed"]
+[connection signal="pressed" from="shop_panel/button_city1" to="shop_panel" method="_on_button_city_1_pressed"]
+[connection signal="pressed" from="shop_panel/button_city2" to="shop_panel" method="_on_button_city_2_pressed"]
+[connection signal="pressed" from="shop_panel/button_city3" to="shop_panel" method="_on_button_city_3_pressed"]

@@ -17,6 +17,10 @@ const UNITS_BLUE_3 = preload("res://assets/units_blue_3.png")
 const UNITS_RED_1 = preload("res://assets/units_red_1.png")
 const UNITS_RED_2 = preload("res://assets/units_red_2.png")
 const UNITS_RED_3 = preload("res://assets/units_red_3.png")
+const CITY_1 = preload("res://assets/city1.png")
+const CITY_2 = preload("res://assets/city2.png")
+const CITY_3 = preload("res://assets/city3.png")
+const CAPITAL = preload("res://assets/capital.png")
 
 const TURN_BLUE = preload("res://assets/turn_blue.png")
 const TURN_RED = preload("res://assets/turn_red.png")
@@ -27,6 +31,7 @@ const PIECE_MOVE = preload("res://assets/piece_move.png")
 @onready var turn = $turn
 @onready var dots = $dots
 @onready var score_label = $score_label
+@onready var shop = $shop_panel
 
 
 #Variables
@@ -36,14 +41,20 @@ var state : bool = false #brother said just in case :sob:
 var moves = []
 var selected_piece : Vector2
 var ownership : Array = []
+var item: int = 0
+var shopping: bool = true
+var is_shop_open: bool = false
+var selected_place: Vector2 = Vector2(-1, -1)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void: #ładuje od dołu do góry tak uzupełnia to gówno
+	shop.hide()
+	
 	board.append([0,0,0,0,0,0,0,0,0,0,0,0])
-	board.append([0,3,0,0,0,0,0,0,0,0,-4,0])	
-	board.append([0,2,0,0,0,0,0,0,0,0,-3,0]) #4 is main character blue (zuzia)
-	board.append([0,1,0,0,0,0,0,0,0,0,-2,0]) #-4 is main character red (kamil) 
-	board.append([0,4,0,0,0,0,0,0,0,0,-1,0])
+	board.append([0,3,0,0,0,0,0,0,0,0,7,0])	
+	board.append([0,2,0,0,0,0,0,0,0,0,-3,0]) #+ is blue
+	board.append([0,1,0,0,0,0,0,0,0,0,-2,0]) #- is red 
+	board.append([0,7,0,0,0,0,0,0,0,0,-1,0])
 	board.append([0,0,0,0,0,0,0,0,0,0,0,0])
 	
 	# stworz tabele ownership
@@ -54,19 +65,44 @@ func _ready() -> void: #ładuje od dołu do góry tak uzupełnia to gówno
 		ownership.append(row)
 		
 	display_board()
-	
+
+func _process(delta: float) -> void:
+	check_purchase()
+
 func _input(event):
 	if event is InputEventMouseButton && event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			if is_mouse_out(): return
+			if is_mouse_out(): 
+				close_shop()
+				return
 			var var1 = snapped(get_global_mouse_position().x, 0) / CELL_WIDTH
 			var var2 = abs(snapped(get_global_mouse_position().y, 0)) / CELL_WIDTH
 			#print(var1, ",", var2)
+			
+			# logika zakupów
+			if is_shop_open:
+					if not shop.get_global_rect().has_point(get_global_mouse_position()):
+						close_shop()
+					return
+			
+			if shopping && board[var2][var1] == 0:
+				open_shop()
+				#item = GlobalState.current_item
+				item = 0
+				selected_place = Vector2(var2, var1)
+				return
+			
+			# logika poruszania sie
 			if !state && ((blue && board[var2][var1] == 1) || (!blue && board[var2][var1] == -1) || (blue && board[var2][var1] == 2) || (blue && board[var2][var1] == 3) || (blue && board[var2][var1] == 4) || (!blue && board[var2][var1] == -2) || (!blue && board[var2][var1] == -3) || (!blue && board[var2][var1] == -4)):
 				selected_piece = Vector2(var2, var1)
 				show_options()
 				state = true
-			elif state: set_move(var2, var1)
+				shopping = false
+				
+			elif state: 
+				set_move(var2, var1)
+				shopping = true
+				
 			
 func is_mouse_out():
 	if get_global_mouse_position().x < 0 || get_global_mouse_position().x > 960 || get_global_mouse_position().y > 0 || get_global_mouse_position().y < -480: return true
@@ -86,12 +122,18 @@ func display_board():
 				-1: holder.texture = UNITS_RED_1
 				-2: holder.texture = UNITS_RED_2
 				-3: holder.texture = UNITS_RED_3
-				-4: holder.texture = PORTRAIT_KAMIL
+				-4: holder.texture = CITY_1
+				-5: holder.texture = CITY_2
+				-6: holder.texture = CITY_3
+				-7: holder.texture = CAPITAL
 				0: holder.texture = null
 				1: holder.texture = UNITS_BLUE_1
 				2: holder.texture = UNITS_BLUE_2
 				3: holder.texture = UNITS_BLUE_3
-				4: holder.texture = PORTRAIT_ZUZIA
+				4: holder.texture = CITY_1
+				5: holder.texture = CITY_2
+				6: holder.texture = CITY_3
+				7: holder.texture = CAPITAL
 				
 	if blue: turn.texture = TURN_BLUE
 	else: turn.texture = TURN_RED #to jest tylko tymczasowe bo idk jeszcze sie to ustawi jakos inaczej pewnie
@@ -196,7 +238,6 @@ func get_moves():
 		1: _moves = get_basic_moves()
 		2: _moves = get_basic_moves()
 		3: _moves = get_basic_moves()
-		4: _moves = get_basic_moves() #postacie
 	return _moves
 
 func is_valid_position(pos : Vector2):
@@ -231,3 +272,23 @@ func get_basic_moves():
 			elif is_enemy(pos) and not is_stronger(pos):
 				_moves.append(pos)
 	return _moves
+
+func open_shop():
+	shop.show()
+	is_shop_open = true
+
+func close_shop():
+	shop.hide()
+	is_shop_open = false
+
+func check_purchase():
+	if GlobalState.current_item != 0 and selected_place != Vector2(-1, -1):
+		# umieść jednostkę na planszy
+		if blue: board[selected_place.x][selected_place.y] = GlobalState.current_item
+		else: board[selected_place.x][selected_place.y] = -GlobalState.current_item
+		
+		# resetuj wybór
+		GlobalState.current_item = 0
+		selected_place = Vector2(-1, -1)
+		display_board()
+		close_shop()

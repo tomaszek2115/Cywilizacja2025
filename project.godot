@@ -17,7 +17,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-shop_scene="*res://scenes/shop.tscn"
+GlobalState="*res://scenes/global_state.gd"
 
 [display]
 
