@@ -2,6 +2,8 @@ extends Node
 
 var money = 100
 
+
+
 var shop_items = {
 	1: {
 		"Name": "unit_1",

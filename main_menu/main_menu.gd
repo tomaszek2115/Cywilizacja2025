@@ -10,6 +10,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+var settings_scene = preload("res://settings/Settings.tscn")
 
 func _on_newGame_pressed() -> void:
 	get_tree().change_scene_to_file("res://new_game/new_game.tscn")
@@ -18,4 +19,4 @@ func _on_loadGame_pressed() -> void:
 	get_tree().change_scene_to_file("res://load_game/load_game.tscn")
 
 func _on_settings_pressed() -> void:
-	get_tree().quit() #potem sie doda reszte
+	get_tree().change_scene_to_file("res://settings/Settings.tscn")

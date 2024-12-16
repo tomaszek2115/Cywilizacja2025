@@ -1,6 +1,5 @@
-[gd_scene load_steps=18 format=3 uid="uid://bq71s72gpl80u"]
+[gd_scene load_steps=17 format=3 uid="uid://bq71s72gpl80u"]
 
-[ext_resource type="Script" path="res://load_game/load_game.gd" id="1_by0s1"]
 [ext_resource type="Texture2D" uid="uid://bwi4x6re1nk48" path="res://main_menu/background.png" id="1_eqx0a"]
 [ext_resource type="FontFile" uid="uid://52kqfxtygux6" path="res://assets/upheavtt.ttf" id="3_j3f88"]
 
@@ -65,7 +64,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_by0s1")
 
 [node name="BackGroundLabel" type="Panel" parent="."]
 layout_mode = 1
