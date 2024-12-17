@@ -1,14 +1,29 @@
-[gd_scene load_steps=14 format=3 uid="uid://b7g7abca3g6j2"]
+[gd_scene load_steps=20 format=3 uid="uid://b7g7abca3g6j2"]
 
 [ext_resource type="Texture2D" uid="uid://dv0s8x4urndpm" path="res://assets/background.png" id="1_m2n3a"]
 [ext_resource type="Script" path="res://scenes/civilization2050.gd" id="2_8h7o6"]
 [ext_resource type="FontFile" uid="uid://52kqfxtygux6" path="res://assets/upheavtt.ttf" id="3_6ylen"]
 [ext_resource type="Script" path="res://scenes/shop_panel.gd" id="4_h3otj"]
-[ext_resource type="Texture2D" uid="uid://c3gjw2h77pj1r" path="res://assets/units_blue_1.png" id="4_nx6j8"]
-[ext_resource type="Texture2D" uid="uid://b0mdbjyi6a765" path="res://assets/units_blue_2.png" id="5_epvy4"]
-[ext_resource type="Texture2D" uid="uid://cc0ikakxe8ipk" path="res://assets/units_blue_3.png" id="6_2q6fo"]
+[ext_resource type="Texture2D" uid="uid://ckqok84ln7f4j" path="res://assets/units_icon_1.png" id="5_nwh5j"]
+[ext_resource type="Texture2D" uid="uid://d1surnqverg06" path="res://assets/units_icon_2.png" id="6_wf08x"]
+[ext_resource type="Texture2D" uid="uid://d0t21i6ug7n6e" path="res://assets/units_icon_3.png" id="7_h338n"]
+[ext_resource type="Texture2D" uid="uid://cnh7ymmm6vvxc" path="res://assets/city1.png" id="8_12cu6"]
+[ext_resource type="Texture2D" uid="uid://cje8j7wj443c8" path="res://assets/city2.png" id="9_w4yyg"]
+[ext_resource type="Texture2D" uid="uid://b8ws64m1a7n6f" path="res://assets/city3.png" id="10_jptki"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4282"]
+bg_color = Color(0, 0, 0, 0.439216)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_detail = 20
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g4133"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_plsuf"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6upau"]
+bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5mgri"]
 
@@ -54,6 +69,7 @@ offset_right = -1075.0
 offset_bottom = -1000.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_v4282")
 script = ExtResource("4_h3otj")
 
 [node name="button_units1" type="Button" parent="shop_panel"]
@@ -63,7 +79,10 @@ offset_top = 50.0
 offset_right = 300.0
 offset_bottom = 300.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_g4133")
-icon = ExtResource("4_nx6j8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_plsuf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6upau")
+icon = ExtResource("5_nwh5j")
+flat = true
 icon_alignment = 1
 expand_icon = true
 
@@ -74,7 +93,10 @@ offset_top = 50.0
 offset_right = 600.0
 offset_bottom = 300.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_5mgri")
-icon = ExtResource("5_epvy4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_plsuf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6upau")
+icon = ExtResource("6_wf08x")
+flat = true
 icon_alignment = 1
 expand_icon = true
 
@@ -85,7 +107,10 @@ offset_top = 50.0
 offset_right = 900.0
 offset_bottom = 300.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_57sd2")
-icon = ExtResource("6_2q6fo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_plsuf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6upau")
+icon = ExtResource("7_h338n")
+flat = true
 icon_alignment = 1
 expand_icon = true
 
@@ -97,8 +122,12 @@ offset_right = 1200.0
 offset_bottom = 300.0
 theme_override_font_sizes/font_size = 56
 theme_override_styles/focus = SubResource("StyleBoxEmpty_11506")
-text = "city1"
+theme_override_styles/hover = SubResource("StyleBoxFlat_plsuf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6upau")
+icon = ExtResource("8_12cu6")
+flat = true
 icon_alignment = 1
+expand_icon = true
 
 [node name="button_city2" type="Button" parent="shop_panel"]
 layout_mode = 0
@@ -108,7 +137,11 @@ offset_right = 1500.0
 offset_bottom = 300.0
 theme_override_font_sizes/font_size = 56
 theme_override_styles/focus = SubResource("StyleBoxEmpty_cw2dt")
-text = "city2"
+theme_override_styles/hover = SubResource("StyleBoxFlat_plsuf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6upau")
+icon = ExtResource("9_w4yyg")
+flat = true
+expand_icon = true
 
 [node name="button_city3" type="Button" parent="shop_panel"]
 layout_mode = 0
@@ -118,7 +151,11 @@ offset_right = 1800.0
 offset_bottom = 300.0
 theme_override_font_sizes/font_size = 56
 theme_override_styles/focus = SubResource("StyleBoxEmpty_dh47x")
-text = "city3"
+theme_override_styles/hover = SubResource("StyleBoxFlat_plsuf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6upau")
+icon = ExtResource("10_jptki")
+flat = true
+expand_icon = true
 
 [node name="Label" type="Label" parent="shop_panel"]
 layout_mode = 0
