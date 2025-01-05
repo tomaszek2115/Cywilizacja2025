@@ -1,8 +1,8 @@
+RichTextLabel
+Panel
 Label
 Button
 TextureButton
-Panel
-RichTextLabel
 Control
 Container
 AnimationPlayer

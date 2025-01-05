@@ -32,6 +32,8 @@ const PIECE_MOVE = preload("res://assets/piece_move.png")
 @onready var dots = $dots
 @onready var score_label = $score_label
 @onready var shop = $shop_panel
+@onready var budget_player1 = $budget_player1
+@onready var budget_player2 = $budget_player2
 
 
 #Variables
@@ -45,6 +47,8 @@ var item: int = 0
 var shopping: bool = true
 var is_shop_open: bool = false
 var selected_place: Vector2 = Vector2(-1, -1)
+var budget_p1: int = 150
+var budget_p2: int = 150
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void: #ładuje od dołu do góry tak uzupełnia to gówno
@@ -137,6 +141,8 @@ func display_board():
 				
 	if blue: turn.texture = TURN_BLUE
 	else: turn.texture = TURN_RED #to jest tylko tymczasowe bo idk jeszcze sie to ustawi jakos inaczej pewnie
+	
+	update_budget_display()
 
 func show_options():
 	moves = get_moves()
@@ -221,16 +227,35 @@ func update_score_display():
 	formatted_text += "[color=red]" + str(round(red_percentage)) + "%[/color]"
 	formatted_text += "[/center]"
 	score_label.bbcode_text = formatted_text
+
+func update_budget_display():
+	var value = GlobalState.value
+	var balance : int = 0
 	
+	if value != 0:
+		if blue:
+			balance = budget_p1 - value
+			if balance >= 0:
+				budget_player1.bbcode_text = "[center]player 1:
+" + str(balance) + "$"
+			#else:
+				# wypierdala brak mozliwosci postawienia unitu
+				
+		else:
+			balance = budget_p2 - value
+			if balance >= 0:
+				budget_player2.bbcode_text = "[center]player 2:
+" + str(balance) + "$"
+			#else:
+				# wypierdala brak mozliwosci postawienia unitu
+	GlobalState.value=0
+	balance=0
 
 # Function to stop the gameplay
 func disable_gameplay():
 	# prevent further interactions in the game
 	set_process_input(false)
 	turn.texture = null
-	
-
-
 
 func get_moves():
 	var _moves = []

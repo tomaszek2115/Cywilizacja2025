@@ -223,6 +223,34 @@ text = "250$"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="budget_player1" type="RichTextLabel" parent="."]
+offset_left = -2000.0
+offset_top = -1000.0
+offset_right = -1300.0
+offset_bottom = -800.0
+theme_override_colors/default_color = Color(0, 0, 1, 1)
+theme_override_fonts/normal_font = ExtResource("3_6ylen")
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "[center]player 1:
+150$"
+
+[node name="budget_player2" type="RichTextLabel" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -2700.0
+offset_top = -1000.0
+offset_right = -2000.0
+offset_bottom = -800.0
+grow_horizontal = 0
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_6ylen")
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "[center]player 2:
+150$"
+
 [connection signal="pressed" from="shop_panel/button_units1" to="shop_panel" method="_on_button_units_1_pressed"]
 [connection signal="pressed" from="shop_panel/button_units2" to="shop_panel" method="_on_button_units_2_pressed"]
 [connection signal="pressed" from="shop_panel/button_units3" to="shop_panel" method="_on_button_units_3_pressed"]
