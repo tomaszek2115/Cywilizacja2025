@@ -1,2 +1,6 @@
 res://scenes/board.tscn
 res://scenes/main.tscn
+res://scenes/texture_holder.tscn
+res://new_game/new_game.tscn
+res://main_menu/main_menu.tscn
+res://scenes/civilization2050.gd

@@ -34,6 +34,7 @@ const PIECE_MOVE = preload("res://assets/piece_move.png")
 @onready var shop = $shop_panel
 @onready var budget_player1 = $budget_player1
 @onready var budget_player2 = $budget_player2
+@onready var message = $message
 
 
 #Variables
@@ -141,8 +142,6 @@ func display_board():
 				
 	if blue: turn.texture = TURN_BLUE
 	else: turn.texture = TURN_RED #to jest tylko tymczasowe bo idk jeszcze sie to ustawi jakos inaczej pewnie
-	
-	update_budget_display()
 
 func show_options():
 	moves = get_moves()
@@ -228,28 +227,27 @@ func update_score_display():
 	formatted_text += "[/center]"
 	score_label.bbcode_text = formatted_text
 
-func update_budget_display():
-	var value = GlobalState.value
-	var balance : int = 0
-	
-	if value != 0:
-		if blue:
-			balance = budget_p1 - value
-			if balance >= 0:
-				budget_player1.bbcode_text = "[center]player 1:
-" + str(balance) + "$"
+#func update_budget_display():
+	#var value = GlobalState.value
+	#var balance : int = 0
+	#
+	#if value != 0:
+		#if blue:
+			#balance = budget_p1 - value
+			#if balance >= 0:
+				#budget_player1.bbcode_text = "[center]player 1:
+#" + str(balance) + "$"
 			#else:
-				# wypierdala brak mozliwosci postawienia unitu
-				
-		else:
-			balance = budget_p2 - value
-			if balance >= 0:
-				budget_player2.bbcode_text = "[center]player 2:
-" + str(balance) + "$"
+				#message.display_message("not enough money", 3.0)
+		#else:
+			#balance = budget_p2 - value
+			#if balance >= 0:
+				#budget_player2.bbcode_text = "[center]player 2:
+#" + str(balance) + "$"
 			#else:
-				# wypierdala brak mozliwosci postawienia unitu
-	GlobalState.value=0
-	balance=0
+				#message.display_message("not enough money", 3.0)
+	#GlobalState.value=0
+	#balance=0
 
 # Function to stop the gameplay
 func disable_gameplay():
@@ -308,12 +306,60 @@ func close_shop():
 
 func check_purchase():
 	if GlobalState.current_item != 0 and selected_place != Vector2(-1, -1):
-		# umieść jednostkę na planszy
-		if blue: board[selected_place.x][selected_place.y] = GlobalState.current_item
-		else: board[selected_place.x][selected_place.y] = -GlobalState.current_item
+		# sprawdz czy gracza stac
+		var value = GlobalState.value
+		var balance : int = 0
+		
+		if value != 0:
+			if blue:
+				balance = budget_p1 - value
+				if balance >= 0:
+					budget_p1 = balance
+					board[selected_place.x][selected_place.y] = GlobalState.current_item
+					update_budget_display(balance)
+				else:
+					message.display_message("not enough money", 1.5)
+			else:
+				balance = budget_p2 - value
+				if balance >= 0:
+					budget_p2 = balance
+					board[selected_place.x][selected_place.y] = -GlobalState.current_item
+					update_budget_display(balance)
+				else:
+					message.display_message("not enough money", 1.5)
 		
 		# resetuj wybór
+		balance = 0
 		GlobalState.current_item = 0
+		GlobalState.value = 0
 		selected_place = Vector2(-1, -1)
 		display_board()
 		close_shop()
+
+func update_budget_display(balance):
+	if blue:
+		budget_player1.bbcode_text = "[center]player 1
+" + str(balance) + "$"
+	else:
+		budget_player2.bbcode_text = "[center]player 2
+" + str(balance) + "$"
+	#var value = GlobalState.value
+	#var balance : int = 0
+	#
+	#if value != 0:
+		#if blue:
+			#balance = budget_p1 - value
+			#if balance >= 0:
+				#budget_player1.bbcode_text = "[center]player 1:
+#" + str(balance) + "$"
+			#else:
+				#message.display_message("not enough money", 3.0)
+		#else:
+			#balance = budget_p2 - value
+			#if balance >= 0:
+				#budget_player2.bbcode_text = "[center]player 2:
+#" + str(balance) + "$"
+			#else:
+				#message.display_message("not enough money", 3.0)
+	#GlobalState.value=0
+	#balance=0

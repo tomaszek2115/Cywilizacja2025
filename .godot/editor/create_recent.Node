@@ -1,14 +1,14 @@
+AnimationPlayer
+Timer
+Label
 RichTextLabel
 Panel
-Label
 Button
 TextureButton
 Control
 Container
-AnimationPlayer
 CanvasLayer
 ItemList
 Node2D
 TileMapLayer
 Sprite2D
-Camera2D
