@@ -180,6 +180,7 @@ func set_move(var2, var1):
 			
 			# update the score display
 			update_score_display()
+			update_budget()
 			break
 	delete_dots()
 	state = false
@@ -226,28 +227,6 @@ func update_score_display():
 	formatted_text += "[color=red]" + str(round(red_percentage)) + "%[/color]"
 	formatted_text += "[/center]"
 	score_label.bbcode_text = formatted_text
-
-#func update_budget_display():
-	#var value = GlobalState.value
-	#var balance : int = 0
-	#
-	#if value != 0:
-		#if blue:
-			#balance = budget_p1 - value
-			#if balance >= 0:
-				#budget_player1.bbcode_text = "[center]player 1:
-#" + str(balance) + "$"
-			#else:
-				#message.display_message("not enough money", 3.0)
-		#else:
-			#balance = budget_p2 - value
-			#if balance >= 0:
-				#budget_player2.bbcode_text = "[center]player 2:
-#" + str(balance) + "$"
-			#else:
-				#message.display_message("not enough money", 3.0)
-	#GlobalState.value=0
-	#balance=0
 
 # Function to stop the gameplay
 func disable_gameplay():
@@ -306,10 +285,11 @@ func close_shop():
 
 func check_purchase():
 	if GlobalState.current_item != 0 and selected_place != Vector2(-1, -1):
-		# sprawdz czy gracza stac
+		
 		var value = GlobalState.value
 		var balance : int = 0
 		
+		# sprawdz czy gracza stac
 		if value != 0:
 			if blue:
 				balance = budget_p1 - value
@@ -343,23 +323,17 @@ func update_budget_display(balance):
 	else:
 		budget_player2.bbcode_text = "[center]player 2
 " + str(balance) + "$"
-	#var value = GlobalState.value
-	#var balance : int = 0
-	#
-	#if value != 0:
-		#if blue:
-			#balance = budget_p1 - value
-			#if balance >= 0:
-				#budget_player1.bbcode_text = "[center]player 1:
-#" + str(balance) + "$"
-			#else:
-				#message.display_message("not enough money", 3.0)
-		#else:
-			#balance = budget_p2 - value
-			#if balance >= 0:
-				#budget_player2.bbcode_text = "[center]player 2:
-#" + str(balance) + "$"
-			#else:
-				#message.display_message("not enough money", 3.0)
-	#GlobalState.value=0
-	#balance=0
+
+func update_budget():
+	var scores = calculate_score()
+	var balance : int = 0
+	if blue:
+		var blue = scores[0]
+		balance = blue * 5
+		budget_p1 += balance
+		update_budget_display(budget_p1)
+	else:
+		var red = scores[1]
+		balance = red * 5
+		budget_p2 += balance
+		update_budget_display(budget_p2)
