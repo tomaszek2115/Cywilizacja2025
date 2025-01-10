@@ -1,3 +1,4 @@
+TileMapLayer
 AnimationPlayer
 Timer
 Label
@@ -10,5 +11,4 @@ Container
 CanvasLayer
 ItemList
 Node2D
-TileMapLayer
 Sprite2D

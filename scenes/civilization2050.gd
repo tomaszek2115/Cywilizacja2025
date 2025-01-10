@@ -56,7 +56,7 @@ func _ready() -> void: #ładuje od dołu do góry tak uzupełnia to gówno
 	shop.hide()
 	
 	board.append([0,0,0,0,0,0,0,0,0,0,0,0])
-	board.append([0,3,0,0,0,0,0,0,0,0,7,0])	
+	board.append([0,3,0,0,0,0,0,0,0,0,-7,0])	
 	board.append([0,2,0,0,0,0,0,0,0,0,-3,0]) #+ is blue
 	board.append([0,1,0,0,0,0,0,0,0,0,-2,0]) #- is red 
 	board.append([0,7,0,0,0,0,0,0,0,0,-1,0])
@@ -66,10 +66,19 @@ func _ready() -> void: #ładuje od dołu do góry tak uzupełnia to gówno
 	for i in range(MAP_HEIGHT):
 		var row = []
 		for j in range(MAP_WIDTH):
-			row.append(0)
+			if board[i][j] > 0:
+				row.append(1) # Blue ownership 
+			elif board[i][j] < 0:
+				row.append(-1) # Red ownership
+			else:
+				row.append(0) # Neutral cell
 		ownership.append(row)
+	print("Ownership Array:", ownership)
+			
 		
 	display_board()
+	calculate_score() # Ensure score is calculated at the start
+	update_score_display()
 
 func _process(delta: float) -> void:
 	check_purchase()
@@ -139,9 +148,7 @@ func display_board():
 				5: holder.texture = CITY_2
 				6: holder.texture = CITY_3
 				7: holder.texture = CAPITAL
-				
-	if blue: turn.texture = TURN_BLUE
-	else: turn.texture = TURN_RED #to jest tylko tymczasowe bo idk jeszcze sie to ustawi jakos inaczej pewnie
+	
 
 func show_options():
 	moves = get_moves()
@@ -188,7 +195,7 @@ func set_move(var2, var1):
 func calculate_score():
 	var blue_count = 0
 	var red_count = 0
-	var total_cells = MAP_WIDTH * MAP_HEIGHT
+	var total_cells = MAP_HEIGHT * MAP_WIDTH # The total num of cells
 	
 	for row in ownership:
 		for cell in row:
@@ -196,10 +203,11 @@ func calculate_score():
 				blue_count +=1
 			elif cell == -1:
 				red_count +=1
+
 	
-	var blue_percentage = float (blue_count) / total_cells * 100
-	var red_percentage = float(red_count) / total_cells * 100
-	
+	var blue_percentage = float (blue_count) / total_cells * 100.0
+	var red_percentage = float(red_count) / total_cells * 100.0
+	print("Blue Count:", blue_percentage, "Red Count:", red_percentage, "Total Cells:", total_cells)
 	return [blue_percentage, red_percentage]
 	
 func update_score_display():
@@ -227,6 +235,9 @@ func update_score_display():
 	formatted_text += "[color=red]" + str(round(red_percentage)) + "%[/color]"
 	formatted_text += "[/center]"
 	score_label.bbcode_text = formatted_text
+	
+
+
 
 # Function to stop the gameplay
 func disable_gameplay():
@@ -296,6 +307,7 @@ func check_purchase():
 				if balance >= 0:
 					budget_p1 = balance
 					board[selected_place.x][selected_place.y] = GlobalState.current_item
+					ownership[selected_place.x][selected_place.y] = 1
 					update_budget_display(balance)
 				else:
 					message.display_message("not enough money", 1.5)
@@ -304,6 +316,7 @@ func check_purchase():
 				if balance >= 0:
 					budget_p2 = balance
 					board[selected_place.x][selected_place.y] = -GlobalState.current_item
+					ownership[selected_place.x][selected_place.y] = -1
 					update_budget_display(balance)
 				else:
 					message.display_message("not enough money", 1.5)
@@ -314,6 +327,8 @@ func check_purchase():
 		GlobalState.value = 0
 		selected_place = Vector2(-1, -1)
 		display_board()
+		calculate_score()
+		update_score_display()
 		close_shop()
 
 func update_budget_display(balance):
