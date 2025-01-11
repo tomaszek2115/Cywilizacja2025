@@ -73,7 +73,7 @@ func _ready() -> void: #ładuje od dołu do góry tak uzupełnia to gówno
 
 func _process(delta: float) -> void:
 	check_purchase()
-
+	
 func _input(event):
 	if event is InputEventMouseButton && event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
@@ -327,13 +327,29 @@ func update_budget_display(balance):
 func update_budget():
 	var scores = calculate_score()
 	var balance : int = 0
+	var tab = check_income()
 	if blue:
 		var blue = scores[0]
 		balance = blue * 5
+		balance += tab[1]
 		budget_p1 += balance
 		update_budget_display(budget_p1)
 	else:
 		var red = scores[1]
 		balance = red * 5
+		balance += tab[0]
 		budget_p2 += balance
 		update_budget_display(budget_p2)
+
+func check_income():
+	var town_income = [0, 0]
+	for i in range(MAP_HEIGHT):
+		for j in range(MAP_WIDTH)	:
+			match(board[i][j]):
+				-4: town_income[0] += 5
+				-5: town_income[0] += 7
+				-6: town_income[0] += 9
+				4: town_income[1] += 5
+				5: town_income[1] += 7
+				6: town_income[1] += 9
+	return town_income
