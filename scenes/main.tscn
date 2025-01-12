@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b7g7abca3g6j2" path="res://scenes/board.tscn" id="1_tlbpt"]
 [ext_resource type="Texture2D" uid="uid://dusmc3nysr45v" path="res://assets/tiles_square.png" id="2_ieoyg"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7l3wn"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hhko0"]
 texture = ExtResource("2_ieoyg")
 texture_region_size = Vector2i(80, 80)
 0:0/0 = 0
@@ -74,7 +74,7 @@ texture_region_size = Vector2i(80, 80)
 14:4/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_otkje"]
-sources/0 = SubResource("TileSetAtlasSource_7l3wn")
+sources/0 = SubResource("TileSetAtlasSource_hhko0")
 
 [node name="Main" type="Node2D"]
 
@@ -84,7 +84,6 @@ position = Vector2(480, -240)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="board" parent="." instance=ExtResource("1_tlbpt")]
-position = Vector2(480, -240)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 modulate = Color(0, 0, 0, 0.0745098)

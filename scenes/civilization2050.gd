@@ -22,6 +22,9 @@ const CITY_2 = preload("res://assets/city2.png")
 const CITY_3 = preload("res://assets/city3.png")
 const CAPITAL = preload("res://assets/capital.png")
 
+const BLUE_SQUARE = preload("res://assets/square_blue.png")
+const RED_SQUARE = preload("res://assets/square_red.png")
+
 const TURN_BLUE = preload("res://assets/turn_blue.png")
 const TURN_RED = preload("res://assets/turn_red.png")
 
@@ -62,6 +65,9 @@ func _ready() -> void: #ładuje od dołu do góry tak uzupełnia to gówno
 	board.append([0,7,0,0,0,0,0,0,0,0,-1,0])
 	board.append([0,0,0,0,0,0,0,0,0,0,0,0])
 	
+	
+	
+	
 	# stworz tabele ownership
 	for i in range(MAP_HEIGHT):
 		var row = []
@@ -73,7 +79,6 @@ func _ready() -> void: #ładuje od dołu do góry tak uzupełnia to gówno
 			else:
 				row.append(0) # Neutral cell
 		ownership.append(row)
-	print("Ownership Array:", ownership)
 			
 		
 	display_board()
@@ -125,13 +130,24 @@ func is_mouse_out():
 func display_board():
 	for child in characters.get_children():
 		child.queue_free()
-
+			
 	for i in MAP_HEIGHT:
 		for j in MAP_WIDTH:
+			var square_holder = TEXTURE_HOLDER.instantiate()
+			add_child(square_holder)  # Add squares directly under the parent node
+			square_holder.global_position = Vector2(j * CELL_WIDTH + (CELL_WIDTH / 2), -i * CELL_WIDTH - (CELL_WIDTH / 2))
+			
+			match ownership[i][j]:
+				-1, -2, -3, -4, -5, -6, -7:
+					square_holder.texture = RED_SQUARE
+				1, 2, 3, 4, 5, 6, 7:
+					square_holder.texture = BLUE_SQUARE
+				_:
+					square_holder.texture = null
+			
 			var holder = TEXTURE_HOLDER.instantiate()
 			characters.add_child(holder)
 			holder.global_position = Vector2(j * CELL_WIDTH + (CELL_WIDTH / 2), -i * CELL_WIDTH - (CELL_WIDTH / 2))
-			
 			match board[i][j]:
 				-1: holder.texture = UNITS_RED_1
 				-2: holder.texture = UNITS_RED_2
@@ -148,7 +164,6 @@ func display_board():
 				5: holder.texture = CITY_2
 				6: holder.texture = CITY_3
 				7: holder.texture = CAPITAL
-	
 
 func show_options():
 	moves = get_moves()
