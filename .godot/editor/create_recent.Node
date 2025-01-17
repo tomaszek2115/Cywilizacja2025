@@ -1,14 +1,14 @@
+CanvasLayer
+Button
 TileMapLayer
 AnimationPlayer
 Timer
 Label
 RichTextLabel
 Panel
-Button
 TextureButton
 Control
 Container
-CanvasLayer
 ItemList
 Node2D
 Sprite2D

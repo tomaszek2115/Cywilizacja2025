@@ -34,7 +34,7 @@ const PIECE_MOVE = preload("res://assets/piece_move.png")
 @onready var turn = $turn
 @onready var dots = $dots
 @onready var score_label = $score_label
-@onready var shop = $shop_panel
+@onready var shop = $CanvasLayer/shop_panel
 @onready var budget_player1 = $budget_player1
 @onready var budget_player2 = $budget_player2
 @onready var message = $message
@@ -55,7 +55,7 @@ var budget_p1: int = 150
 var budget_p2: int = 150
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void: #ładuje od dołu do góry tak uzupełnia to gówno
+func _ready() -> void: #ładuje od dołu do góry tak uzupełnia
 	shop.hide()
 	
 	board.append([0,0,0,0,0,0,0,0,0,0,0,0])
@@ -100,9 +100,11 @@ func _input(event):
 			
 			# logika zakupów
 			if is_shop_open:
-					if not shop.get_global_rect().has_point(get_global_mouse_position()):
-						close_shop()
-					return
+				if shop.get_global_rect().has_point(get_global_mouse_position()):
+					check_purchase()  # Trigger purchase logic when interacting with shop
+				else:
+					close_shop()  # Close shop if clicked outside the panel
+				return
 			
 			if shopping && board[var2][var1] == 0:
 				open_shop()
@@ -291,7 +293,7 @@ func is_stronger(pos : Vector2):
 	
 func get_basic_moves():
 	var _moves = []
-	var directions = [Vector2(0,1), Vector2(0,-1), Vector2(1,0), Vector2(-1,0), 
+	var directions = [Vector2(0,1), Vector2(0,-1), Vector2(1,0), Vector2(-1,0),
 					  Vector2(1,1), Vector2(1,-1), Vector2(-1,1), Vector2(-1,-1)]
 	for i in directions:
 		var pos = selected_piece + i
@@ -311,7 +313,6 @@ func close_shop():
 
 func check_purchase():
 	if GlobalState.current_item != 0 and selected_place != Vector2(-1, -1):
-		
 		var value = GlobalState.value
 		var balance : int = 0
 		
