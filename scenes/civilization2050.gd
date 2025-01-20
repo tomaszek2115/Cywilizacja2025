@@ -30,14 +30,15 @@ const TURN_RED = preload("res://assets/turn_red.png")
 
 const PIECE_MOVE = preload("res://assets/piece_move.png")
 
+@onready var canvaslayer = $CanvasLayer
 @onready var characters = $characters
 @onready var turn = $turn
 @onready var dots = $dots
-@onready var score_label = $score_label
+@onready var score_label = $CanvasLayer/score_label
 @onready var shop = $CanvasLayer/shop_panel
-@onready var budget_player1 = $budget_player1
-@onready var budget_player2 = $budget_player2
-@onready var message = $message
+@onready var budget_player1 = $CanvasLayer/budget_player1
+@onready var budget_player2 = $CanvasLayer/budget_player2
+@onready var message = $CanvasLayer/message
 
 
 #Variables
@@ -49,7 +50,6 @@ var selected_piece : Vector2
 var ownership : Array = []
 var item: int = 0
 var shopping: bool = true
-var is_shop_open: bool = false
 var selected_place: Vector2 = Vector2(-1, -1)
 var budget_p1: int = 150
 var budget_p2: int = 150
@@ -59,7 +59,7 @@ func _ready() -> void: #ładuje od dołu do góry tak uzupełnia
 	shop.hide()
 	
 	board.append([0,0,0,0,0,0,0,0,0,0,0,0])
-	board.append([0,3,0,0,0,0,0,0,0,0,-7,0])	
+	board.append([0,3,0,0,0,0,0,0,0,0,-7,0])
 	board.append([0,2,0,0,0,0,0,0,0,0,-3,0]) #+ is blue
 	board.append([0,1,0,0,0,0,0,0,0,0,-2,0]) #- is red 
 	board.append([0,7,0,0,0,0,0,0,0,0,-1,0])
@@ -99,11 +99,8 @@ func _input(event):
 			#print(var1, ",", var2)
 			
 			# logika zakupów
-			if is_shop_open:
-				if shop.get_global_rect().has_point(get_global_mouse_position()):
-					check_purchase()  # Trigger purchase logic when interacting with shop
-				else:
-					close_shop()  # Close shop if clicked outside the panel
+			if GlobalState.is_shop_open:
+				check_purchase()  # Trigger purchase logic when interacting with shop
 				return
 			
 			if shopping && board[var2][var1] == 0:
@@ -305,11 +302,11 @@ func get_basic_moves():
 
 func open_shop():
 	shop.show()
-	is_shop_open = true
+	GlobalState.is_shop_open = true
 
 func close_shop():
 	shop.hide()
-	is_shop_open = false
+	GlobalState.is_shop_open = false
 
 func check_purchase():
 	if GlobalState.current_item != 0 and selected_place != Vector2(-1, -1):

@@ -1,5 +1,6 @@
-CanvasLayer
 Button
+Control
+CanvasLayer
 TileMapLayer
 AnimationPlayer
 Timer
@@ -7,7 +8,6 @@ Label
 RichTextLabel
 Panel
 TextureButton
-Control
 Container
 ItemList
 Node2D
