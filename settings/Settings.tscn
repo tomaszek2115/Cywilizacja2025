@@ -14,6 +14,7 @@ modulate_color = Color(0.635294, 0.635294, 0.635294, 1)
 content_margin_top = 5.0
 
 [sub_resource type="SystemFont" id="SystemFont_j8ufm"]
+subpixel_positioning = 0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fcswg"]
 

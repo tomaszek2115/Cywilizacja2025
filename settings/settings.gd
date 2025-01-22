@@ -3,7 +3,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var main_menu_scene = preload("res://main_menu/main_menu.tscn")
+	pass
 	# var value = GlobalState.slider_value # Load the value from the Global singleton
 	# $Panel/GridContainer/Slider.value = value # Set the slider's value
 	# AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(value)) # Set the global volume level
