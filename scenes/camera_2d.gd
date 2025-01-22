@@ -12,7 +12,6 @@ var isDragging : bool = false
 func _ready() -> void:
 	zoomTarget = zoom
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	Zoom(delta)

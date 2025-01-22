@@ -1,7 +1,5 @@
 extends Panel
 
-
-
 func _on_button_units_1_pressed() -> void:
 	print("pressed")
 	GlobalState.current_item = 1

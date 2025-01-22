@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://b7g7abca3g6j2"]
+[gd_scene load_steps=29 format=3 uid="uid://b7g7abca3g6j2"]
 
 [ext_resource type="Texture2D" uid="uid://dv0s8x4urndpm" path="res://assets/background.png" id="1_m2n3a"]
 [ext_resource type="Script" path="res://scenes/civilization2050.gd" id="2_8h7o6"]
@@ -13,10 +13,7 @@
 [ext_resource type="Script" path="res://scenes/message.gd" id="11_vqwor"]
 [ext_resource type="Script" path="res://scenes/camera_2d.gd" id="12_3yfh1"]
 [ext_resource type="Texture2D" uid="uid://04bvrsorpfs2" path="res://assets/cross.png" id="12_7aq7a"]
-
-[sub_resource type="Theme" id="Theme_78aqr"]
-default_font = ExtResource("3_6ylen")
-default_font_size = 48
+[ext_resource type="Script" path="res://scenes/saver_loader.gd" id="14_p2wty"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4282"]
 bg_color = Color(0, 0, 0, 0.439216)
@@ -50,6 +47,10 @@ bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rawde"]
 
+[sub_resource type="Theme" id="Theme_78aqr"]
+default_font = ExtResource("3_6ylen")
+default_font_size = 24
+
 [node name="board" type="Sprite2D"]
 position = Vector2(480, -240)
 scale = Vector2(0.24, 0.24)
@@ -62,15 +63,6 @@ script = ExtResource("2_8h7o6")
 
 [node name="dots" type="Node2D" parent="."]
 modulate = Color(1, 1, 1, 0.588235)
-
-[node name="Button" type="Button" parent="."]
-visible = false
-offset_left = 1425.0
-offset_top = 850.0
-offset_right = 1925.0
-offset_bottom = 938.0
-theme = SubResource("Theme_78aqr")
-text = "END TURN"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-4.16666, -3.05176e-05)
@@ -327,6 +319,40 @@ script = ExtResource("11_vqwor")
 wait_time = 3.0
 one_shot = true
 
+[node name="button_save" type="Button" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -174.0
+offset_top = -123.0
+offset_right = -17.0
+offset_bottom = -87.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_78aqr")
+text = "save game"
+
+[node name="button_exit" type="Button" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -174.0
+offset_top = -73.0
+offset_right = -17.0
+offset_bottom = -37.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_78aqr")
+text = "exit"
+
+[node name="SaverLoader" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("14_p2wty")
+
 [connection signal="pressed" from="CanvasLayer/shop_panel/button_units1" to="CanvasLayer/shop_panel" method="_on_button_units_1_pressed"]
 [connection signal="pressed" from="CanvasLayer/shop_panel/button_units2" to="CanvasLayer/shop_panel" method="_on_button_units_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/shop_panel/button_units3" to="CanvasLayer/shop_panel" method="_on_button_units_3_pressed"]
@@ -334,3 +360,5 @@ one_shot = true
 [connection signal="pressed" from="CanvasLayer/shop_panel/button_city2" to="CanvasLayer/shop_panel" method="_on_button_city_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/shop_panel/button_city3" to="CanvasLayer/shop_panel" method="_on_button_city_3_pressed"]
 [connection signal="pressed" from="CanvasLayer/shop_panel/button_close" to="CanvasLayer/shop_panel" method="_on_button_close_pressed"]
+[connection signal="pressed" from="CanvasLayer/button_save" to="." method="_on_button_save_pressed"]
+[connection signal="pressed" from="CanvasLayer/button_exit" to="." method="_on_button_exit_pressed"]

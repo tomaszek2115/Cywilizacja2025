@@ -39,12 +39,13 @@ const PIECE_MOVE = preload("res://assets/piece_move.png")
 @onready var budget_player1 = $CanvasLayer/budget_player1
 @onready var budget_player2 = $CanvasLayer/budget_player2
 @onready var message = $CanvasLayer/message
+@onready var saver_loader: SaverLoader = %SaverLoader
 
 
 #Variables
 var board : Array
-var blue : bool = true #white w szachach also w tym tutorialu i zaczyna
-var state : bool = false #brother said just in case :sob:
+var blue : bool = true
+var state : bool = false
 var moves = []
 var selected_piece : Vector2
 var ownership : Array = []
@@ -54,35 +55,36 @@ var selected_place: Vector2 = Vector2(-1, -1)
 var budget_p1: int = 150
 var budget_p2: int = 150
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void: #ładuje od dołu do góry tak uzupełnia
+
+func _ready() -> void:
+	GlobalState.reset_globals()
 	shop.hide()
-	
-	board.append([0,0,0,0,0,0,0,0,0,0,0,0])
-	board.append([0,3,0,0,0,0,0,0,0,0,-7,0])
-	board.append([0,2,0,0,0,0,0,0,0,0,-3,0]) #+ is blue
-	board.append([0,1,0,0,0,0,0,0,0,0,-2,0]) #- is red 
-	board.append([0,7,0,0,0,0,0,0,0,0,-1,0])
-	board.append([0,0,0,0,0,0,0,0,0,0,0,0])
-	
-	
-	
-	
-	# stworz tabele ownership
-	for i in range(MAP_HEIGHT):
-		var row = []
-		for j in range(MAP_WIDTH):
-			if board[i][j] > 0:
-				row.append(1) # Blue ownership 
-			elif board[i][j] < 0:
-				row.append(-1) # Red ownership
-			else:
-				row.append(0) # Neutral cell
-		ownership.append(row)
-			
+	if !GlobalState.is_loaded:
 		
+		board.append([0,0,0,0,0,0,0,0,0,0,0,0])
+		board.append([0,3,0,0,0,0,0,0,0,0,-7,0])
+		board.append([0,2,0,0,0,0,0,0,0,0,-3,0]) #+ is blue
+		board.append([0,1,0,0,0,0,0,0,0,0,-2,0]) #- is red 
+		board.append([0,7,0,0,0,0,0,0,0,0,-1,0])
+		board.append([0,0,0,0,0,0,0,0,0,0,0,0])
+		
+		# stworz tabele ownership
+		for i in range(MAP_HEIGHT):
+			var row = []
+			for j in range(MAP_WIDTH):
+				if board[i][j] > 0:
+					row.append(1) # Blue ownership 
+				elif board[i][j] < 0:
+					row.append(-1) # Red ownership
+				else:
+					row.append(0) # Neutral cell
+			ownership.append(row)
+	else:
+		GlobalState.is_loaded = false
+		saver_loader.load_game()
+		update_budget()
 	display_board()
-	calculate_score() # Ensure score is calculated at the start
+	calculate_score()
 	update_score_display()
 
 func _process(delta: float) -> void:
@@ -91,7 +93,8 @@ func _process(delta: float) -> void:
 func _input(event):
 	if event is InputEventMouseButton && event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			if is_mouse_out(): 
+			print("click")
+			if is_mouse_out():
 				close_shop()
 				return
 			var var1 = snapped(get_global_mouse_position().x, 0) / CELL_WIDTH
@@ -372,7 +375,7 @@ func update_budget():
 func check_income():
 	var town_income = [0, 0]
 	for i in range(MAP_HEIGHT):
-		for j in range(MAP_WIDTH)	:
+		for j in range(MAP_WIDTH):
 			match(board[i][j]):
 				-4: town_income[0] += 5
 				-5: town_income[0] += 7
@@ -381,3 +384,10 @@ func check_income():
 				5: town_income[1] += 7
 				6: town_income[1] += 9
 	return town_income
+
+func _on_button_save_pressed() -> void:
+	saver_loader.save_game()
+
+
+func _on_button_exit_pressed() -> void:
+	get_tree().change_scene_to_file("res://main_menu/main_menu.tscn")
