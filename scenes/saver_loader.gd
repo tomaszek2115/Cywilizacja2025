@@ -32,7 +32,7 @@ func load_game():
 	board.state = saved_game.state
 	board.moves = saved_game.moves
 	board.selected_piece = saved_game.selected_piece
-	board.ownership = saved_game.board
+	board.ownership = saved_game.ownership
 	board.item = saved_game.item
 	board.shopping = saved_game.shopping
 	board.selected_place = saved_game.selected_place

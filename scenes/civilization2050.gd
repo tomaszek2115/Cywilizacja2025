@@ -89,7 +89,20 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	check_purchase()
-	
+
+func is_adjacent_to_occupied(pos: Vector2) -> bool:
+	# Określenie możliwych kierunków sąsiednich
+	var directions = [Vector2(0, 1), Vector2(0, -1), Vector2(1, 0), Vector2(-1, 0),
+		Vector2(1, 1), Vector2(1, -1), Vector2(-1, 1), Vector2(-1, -1)]
+	for direction in directions:
+		var neighbor = pos + direction
+		if is_valid_position(neighbor) and ownership[neighbor.x][neighbor.y] != 0:
+			if blue and ownership[neighbor.x][neighbor.y] == 1: # Niebieski gracz
+				return true
+			elif not blue and ownership[neighbor.x][neighbor.y] == -1: # Czerwony gracz
+				return true
+	return false
+
 func _input(event):
 	if event is InputEventMouseButton && event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
@@ -106,7 +119,7 @@ func _input(event):
 				check_purchase()  # Trigger purchase logic when interacting with shop
 				return
 			
-			if shopping && board[var2][var1] == 0:
+			if shopping && board[var2][var1] == 0 and is_adjacent_to_occupied(Vector2(var2, var1)):
 				open_shop()
 				#item = GlobalState.current_item
 				item = 0
