@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b7g7abca3g6j2"]
+[gd_scene load_steps=31 format=3 uid="uid://b7g7abca3g6j2"]
 
 [ext_resource type="Texture2D" uid="uid://dv0s8x4urndpm" path="res://assets/background.png" id="1_m2n3a"]
 [ext_resource type="Script" path="res://scenes/civilization2050.gd" id="2_8h7o6"]
@@ -13,7 +13,9 @@
 [ext_resource type="Script" path="res://scenes/message.gd" id="11_vqwor"]
 [ext_resource type="Script" path="res://scenes/camera_2d.gd" id="12_3yfh1"]
 [ext_resource type="Texture2D" uid="uid://04bvrsorpfs2" path="res://assets/cross.png" id="12_7aq7a"]
+[ext_resource type="Texture2D" uid="uid://cxubk03pvynn2" path="res://assets/pause.png" id="14_m6pas"]
 [ext_resource type="Script" path="res://scenes/saver_loader.gd" id="14_p2wty"]
+[ext_resource type="Script" path="res://scenes/pause.gd" id="16_2u6ta"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4282"]
 bg_color = Color(0, 0, 0, 0.439216)
@@ -269,10 +271,10 @@ theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 
 [node name="budget_player1" type="RichTextLabel" parent="CanvasLayer"]
-offset_left = 32.0
-offset_top = 30.0
-offset_right = 232.0
-offset_bottom = 92.0
+offset_left = 60.0
+offset_top = 60.0
+offset_right = 260.0
+offset_bottom = 122.0
 theme_override_colors/default_color = Color(0, 0, 1, 1)
 theme_override_fonts/normal_font = ExtResource("3_6ylen")
 theme_override_font_sizes/normal_font_size = 30
@@ -284,10 +286,10 @@ text = "[center]player 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -238.0
-offset_top = 30.0
-offset_right = -38.0
-offset_bottom = 92.0
+offset_left = -260.0
+offset_top = 60.0
+offset_right = -60.0
+offset_bottom = 122.0
 grow_horizontal = 0
 theme_override_colors/default_color = Color(1, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_6ylen")
@@ -302,10 +304,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -201.0
-offset_top = -16.5
-offset_right = 201.0
-offset_bottom = 16.5
+offset_left = -200.0
+offset_top = -15.0
+offset_right = 200.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -320,38 +322,62 @@ wait_time = 3.0
 one_shot = true
 
 [node name="button_save" type="Button" parent="CanvasLayer"]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -174.0
-offset_top = -123.0
-offset_right = -17.0
-offset_bottom = -87.0
-grow_horizontal = 0
-grow_vertical = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.5
+offset_top = -18.0
+offset_right = 78.5
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = SubResource("Theme_78aqr")
 text = "save game"
 
-[node name="button_exit" type="Button" parent="CanvasLayer"]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -174.0
-offset_top = -73.0
-offset_right = -17.0
-offset_bottom = -37.0
-grow_horizontal = 0
-grow_vertical = 0
+[node name="button_pause" type="Button" parent="CanvasLayer"]
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 53.0
+offset_bottom = 53.0
 theme = SubResource("Theme_78aqr")
-text = "exit"
+icon = ExtResource("14_m6pas")
+
+[node name="button_exit" type="Button" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.0
+offset_top = 29.0
+offset_right = 79.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_78aqr")
+text = "exit game"
+
+[node name="pause_label" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -95.0
+offset_top = 120.0
+offset_right = 97.0
+offset_bottom = 178.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_6ylen")
+theme_override_font_sizes/font_size = 64
+text = "PAUSE"
 
 [node name="SaverLoader" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("14_p2wty")
+
+[node name="Pause" type="Node" parent="."]
+script = ExtResource("16_2u6ta")
 
 [connection signal="pressed" from="CanvasLayer/shop_panel/button_units1" to="CanvasLayer/shop_panel" method="_on_button_units_1_pressed"]
 [connection signal="pressed" from="CanvasLayer/shop_panel/button_units2" to="CanvasLayer/shop_panel" method="_on_button_units_2_pressed"]
@@ -360,5 +386,6 @@ script = ExtResource("14_p2wty")
 [connection signal="pressed" from="CanvasLayer/shop_panel/button_city2" to="CanvasLayer/shop_panel" method="_on_button_city_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/shop_panel/button_city3" to="CanvasLayer/shop_panel" method="_on_button_city_3_pressed"]
 [connection signal="pressed" from="CanvasLayer/shop_panel/button_close" to="CanvasLayer/shop_panel" method="_on_button_close_pressed"]
-[connection signal="pressed" from="CanvasLayer/button_save" to="." method="_on_button_save_pressed"]
-[connection signal="pressed" from="CanvasLayer/button_exit" to="." method="_on_button_exit_pressed"]
+[connection signal="pressed" from="CanvasLayer/button_save" to="Pause" method="_on_button_save_pressed"]
+[connection signal="pressed" from="CanvasLayer/button_pause" to="Pause" method="_on_button_pause_pressed"]
+[connection signal="pressed" from="CanvasLayer/button_exit" to="Pause" method="_on_button_exit_pressed"]

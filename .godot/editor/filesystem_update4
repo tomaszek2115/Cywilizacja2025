@@ -14,3 +14,4 @@ res://settings/settings.gd
 res://scenes/shop_panel.gd
 res://saved_game/saved_game.gd
 res://scenes/saver_loader.gd
+res://scenes/pause.gd

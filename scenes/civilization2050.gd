@@ -228,7 +228,7 @@ func calculate_score():
 	return [blue_percentage, red_percentage]
 	
 func update_score_display():
-	var scores = calculate_score()
+	var scores = calculate_score()	
 	var blue_percentage = scores[0]
 	var red_percentage = scores[1]
 	
@@ -384,10 +384,3 @@ func check_income():
 				5: town_income[1] += 7
 				6: town_income[1] += 9
 	return town_income
-
-func _on_button_save_pressed() -> void:
-	saver_loader.save_game()
-
-
-func _on_button_exit_pressed() -> void:
-	get_tree().change_scene_to_file("res://main_menu/main_menu.tscn")
