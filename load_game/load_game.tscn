@@ -122,17 +122,17 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_hmopm")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_na8ed")
 text = "⚙️"
 
-[node name="StartButton" type="Button" parent="."]
+[node name="LoadButton1" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -134.5
-offset_top = -106.0
-offset_right = 134.5
-offset_bottom = -53.0
+offset_left = -134.0
+offset_top = -147.0
+offset_right = 135.0
+offset_bottom = -94.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = SubResource("SystemFont_jxpbg")
@@ -141,8 +141,52 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_dfpck")
 theme_override_styles/hover = SubResource("StyleBoxFlat_73is4")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_12qpk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_vbpc2")
-text = "Start"
+text = "SAVE 3"
+
+[node name="LoadButton2" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -136.0
+offset_top = -227.0
+offset_right = 133.0
+offset_bottom = -174.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = SubResource("SystemFont_jxpbg")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dfpck")
+theme_override_styles/hover = SubResource("StyleBoxFlat_73is4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_12qpk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vbpc2")
+text = "SAVE 2"
+
+[node name="LoadButton3" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -134.0
+offset_top = -306.0
+offset_right = 135.0
+offset_bottom = -253.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = SubResource("SystemFont_jxpbg")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dfpck")
+theme_override_styles/hover = SubResource("StyleBoxFlat_73is4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_12qpk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vbpc2")
+text = "SAVE 1"
 
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="LoadButton1" to="." method="_on_load_button_1_pressed"]
+[connection signal="pressed" from="LoadButton2" to="." method="_on_load_button_2_pressed"]
+[connection signal="pressed" from="LoadButton3" to="." method="_on_load_button_3_pressed"]

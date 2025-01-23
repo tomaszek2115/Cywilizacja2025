@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="SavedGame" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://saved_game/saved_game.gd" id="1_gciul"]
+
+[resource]
+script = ExtResource("1_gciul")
+board = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -7, 0], [0, 2, 0, 0, 0, 0, 0, 0, 0, 0, -3, 0], [0, 0, 1, 0, 0, 3, 0, 0, 0, 0, 0, 0], [0, 7, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+blue = false
+state = false
+moves = [Vector2(2, 6), Vector2(2, 4), Vector2(3, 5), Vector2(1, 5), Vector2(3, 6), Vector2(3, 4), Vector2(1, 6), Vector2(1, 4)]
+selected_piece = Vector2(2, 5)
+ownership = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 1, 1, 1, 1, 0, 0, 0, 0, 0, -1, 0], [0, 1, 0, 0, 0, 1, -1, 0, 0, 0, -1, 0], [0, 1, 1, 0, 0, 1, 0, -1, -1, -1, -1, 0], [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+item = 0
+shopping = true
+selected_place = Vector2(2, 5)
+budget_p1 = 390
+budget_p2 = 410

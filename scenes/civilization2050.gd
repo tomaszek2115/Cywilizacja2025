@@ -59,7 +59,7 @@ var budget_p2: int = 150
 func _ready() -> void:
 	GlobalState.reset_globals()
 	shop.hide()
-	if !GlobalState.is_loaded:
+	if GlobalState.is_loaded == 0:
 		
 		board.append([0,0,0,0,0,0,0,0,0,0,0,0])
 		board.append([0,3,0,0,0,0,0,0,0,0,-7,0])
@@ -80,9 +80,9 @@ func _ready() -> void:
 					row.append(0) # Neutral cell
 			ownership.append(row)
 	else:
-		GlobalState.is_loaded = false
-		saver_loader.load_game()
-		update_budget()
+		saver_loader.load_game(GlobalState.is_loaded)
+		GlobalState.is_loaded = 0
+		update_loaded_budget()
 	display_board()
 	calculate_score()
 	update_score_display()
@@ -397,3 +397,9 @@ func check_income():
 				5: town_income[1] += 7
 				6: town_income[1] += 9
 	return town_income
+
+func update_loaded_budget():
+	budget_player1.bbcode_text = "[center]player 1
+" + str(budget_p1) + "$"
+	budget_player2.bbcode_text = "[center]player 2
+" + str(budget_p2) + "$"

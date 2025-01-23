@@ -1,10 +1,12 @@
 res://scenes/board.tscn
+res://scenes/pause.gd
 res://scenes/main.tscn
 res://scenes/texture_holder.tscn
 res://new_game/new_game.tscn
 res://main_menu/main_menu.tscn
-res://load_game/load_game.tscn
 res://settings/Settings.tscn
-res://savegame.tres
+res://load_game/load_game.tscn
 res://scenes/saver_loader.gd
-res://scenes/pause.gd
+res://load_game/load_game.gd
+res://scenes/civilization2050.gd
+res://scenes/global_state.gd

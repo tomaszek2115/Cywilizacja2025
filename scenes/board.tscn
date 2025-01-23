@@ -339,8 +339,9 @@ text = "save game"
 [node name="button_pause" type="Button" parent="CanvasLayer"]
 offset_left = 15.0
 offset_top = 15.0
-offset_right = 53.0
-offset_bottom = 53.0
+offset_right = 73.0
+offset_bottom = 73.0
+scale = Vector2(0.6, 0.6)
 theme = SubResource("Theme_78aqr")
 icon = ExtResource("14_m6pas")
 
@@ -379,6 +380,63 @@ script = ExtResource("14_p2wty")
 [node name="Pause" type="Node" parent="."]
 script = ExtResource("16_2u6ta")
 
+[node name="SavingLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="button_save1" type="Button" parent="SavingLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.0
+offset_top = -65.0
+offset_right = 78.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_78aqr")
+text = "save slot 1"
+
+[node name="button_save2" type="Button" parent="SavingLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.5
+offset_top = -18.0
+offset_right = 78.5
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_78aqr")
+text = "save slot 2"
+
+[node name="button_save3" type="Button" parent="SavingLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.0
+offset_top = 29.0
+offset_right = 79.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_78aqr")
+text = "save slot 3"
+
+[node name="button_return" type="Button" parent="SavingLayer"]
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 53.0
+offset_bottom = 53.0
+scale = Vector2(0.3, 0.3)
+theme = SubResource("Theme_78aqr")
+icon = ExtResource("12_7aq7a")
+
 [connection signal="pressed" from="CanvasLayer/shop_panel/button_units1" to="CanvasLayer/shop_panel" method="_on_button_units_1_pressed"]
 [connection signal="pressed" from="CanvasLayer/shop_panel/button_units2" to="CanvasLayer/shop_panel" method="_on_button_units_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/shop_panel/button_units3" to="CanvasLayer/shop_panel" method="_on_button_units_3_pressed"]
@@ -389,3 +447,7 @@ script = ExtResource("16_2u6ta")
 [connection signal="pressed" from="CanvasLayer/button_save" to="Pause" method="_on_button_save_pressed"]
 [connection signal="pressed" from="CanvasLayer/button_pause" to="Pause" method="_on_button_pause_pressed"]
 [connection signal="pressed" from="CanvasLayer/button_exit" to="Pause" method="_on_button_exit_pressed"]
+[connection signal="pressed" from="SavingLayer/button_save1" to="SaverLoader" method="_on_button_save_1_pressed"]
+[connection signal="pressed" from="SavingLayer/button_save2" to="SaverLoader" method="_on_button_save_2_pressed"]
+[connection signal="pressed" from="SavingLayer/button_save3" to="SaverLoader" method="_on_button_save_3_pressed"]
+[connection signal="pressed" from="SavingLayer/button_return" to="SaverLoader" method="_on_button_return_pressed"]

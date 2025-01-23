@@ -8,6 +8,9 @@ extends Node
 @onready var budget_player_1: RichTextLabel = $"../CanvasLayer/budget_player1"
 @onready var budget_player_2: RichTextLabel = $"../CanvasLayer/budget_player2"
 @onready var pause_label: Label = $"../CanvasLayer/pause_label"
+@onready var saving_layer: CanvasLayer = $"../SavingLayer"
+@onready var canvas_layer: CanvasLayer = $"../CanvasLayer"
+
 
 func _ready() -> void:
 	button_save.visible = false
@@ -41,4 +44,5 @@ func _on_button_exit_pressed() -> void:
 	get_tree().change_scene_to_file("res://main_menu/main_menu.tscn")
 
 func _on_button_save_pressed() -> void:
-	saver_loader.save_game()
+	canvas_layer.hide()
+	saving_layer.show()

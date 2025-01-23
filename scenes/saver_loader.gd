@@ -3,9 +3,10 @@ class_name SaverLoader
 extends Node
 
 @onready var board: Sprite2D = $".."
+@onready var canvas_layer: CanvasLayer = $"../CanvasLayer"
+@onready var saving_layer: CanvasLayer = $"../SavingLayer"
 
-
-func save_game():
+func save_game(slot: int):
 	
 	var saved_game:SavedGame = SavedGame.new()
 	
@@ -21,11 +22,26 @@ func save_game():
 	saved_game.budget_p1 = board.budget_p1
 	saved_game.budget_p2 = board.budget_p2
 	
-	ResourceSaver.save(saved_game, "res://saves/savegame.tres")
+	match slot:
+		1:
+			ResourceSaver.save(saved_game, "res://saves/save1.tres")
+		2:
+			ResourceSaver.save(saved_game, "res://saves/save2.tres")
+		3:
+			ResourceSaver.save(saved_game, "res://saves/save3.tres")
 	print("game saved")
 
-func load_game():
-	var saved_game:SavedGame = load("res://saves/savegame.tres") as SavedGame
+func load_game(slot: int):
+	
+	var saved_game:SavedGame
+	
+	match slot:
+		1:
+			saved_game = load("res://saves/save1.tres") as SavedGame
+		2:
+			saved_game = load("res://saves/save2.tres") as SavedGame
+		3:
+			saved_game = load("res://saves/save3.tres") as SavedGame
 	
 	board.board = saved_game.board
 	board.blue = saved_game.blue
@@ -38,3 +54,16 @@ func load_game():
 	board.selected_place = saved_game.selected_place
 	board.budget_p1 = saved_game.budget_p1
 	board.budget_p2 = saved_game.budget_p2
+
+func _on_button_return_pressed() -> void:
+	canvas_layer.show()
+	saving_layer.hide()
+
+func _on_button_save_1_pressed() -> void:
+	save_game(1)
+
+func _on_button_save_2_pressed() -> void:
+	save_game(2)
+
+func _on_button_save_3_pressed() -> void:
+	save_game(3)

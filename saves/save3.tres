@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="SavedGame" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://saved_game/saved_game.gd" id="1_mvs3t"]
+
+[resource]
+script = ExtResource("1_mvs3t")
+board = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 3, 0, 0, 0, 0, 0, 0, 0, 0, -7, 0], [0, 2, 0, 0, 0, 0, 0, 0, 0, 0, -3, 0], [0, 0, 1, 0, 0, 0, 0, 0, 0, -2, 0, 0], [0, 7, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+blue = true
+state = false
+moves = [Vector2(3, 11), Vector2(3, 9), Vector2(4, 11), Vector2(4, 9), Vector2(2, 11), Vector2(2, 9)]
+selected_piece = Vector2(3, 10)
+ownership = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0], [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0], [0, 1, 1, 0, 0, 0, 0, 0, 0, -1, -1, 0], [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+item = 0
+shopping = true
+selected_place = Vector2(5, 0)
+budget_p1 = 184
+budget_p2 = 177
