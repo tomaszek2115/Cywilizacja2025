@@ -24,11 +24,12 @@ func save_game(slot: int):
 	
 	match slot:
 		1:
-			ResourceSaver.save(saved_game, "res://saves/save1.tres")
+			#ResourceSaver.save(saved_game, "res://saves/save1.tres")
+			ResourceSaver.save(saved_game, "/storage/emulated/0/Android/data/com.example.civilization2050/files/save1.tres")
 		2:
-			ResourceSaver.save(saved_game, "res://saves/save2.tres")
+			ResourceSaver.save(saved_game, "/storage/emulated/0/Android/data/com.example.civilization2050/files/save2.tres")
 		3:
-			ResourceSaver.save(saved_game, "res://saves/save3.tres")
+			ResourceSaver.save(saved_game, "/storage/emulated/0/Android/data/com.example.civilization2050/files/save3.tres")
 	print("game saved")
 
 func load_game(slot: int):
@@ -37,11 +38,11 @@ func load_game(slot: int):
 	
 	match slot:
 		1:
-			saved_game = load("res://saves/save1.tres") as SavedGame
+			saved_game = load("/storage/emulated/0/Android/data/com.example.civilization2050/files/save1.tres") as SavedGame
 		2:
-			saved_game = load("res://saves/save2.tres") as SavedGame
+			saved_game = load("/storage/emulated/0/Android/data/com.example.civilization2050/files/save2.tres") as SavedGame
 		3:
-			saved_game = load("res://saves/save3.tres") as SavedGame
+			saved_game = load("/storage/emulated/0/Android/data/com.example.civilization2050/files/save3.tres") as SavedGame
 	
 	board.board = saved_game.board
 	board.blue = saved_game.blue

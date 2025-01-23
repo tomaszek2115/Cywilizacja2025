@@ -10,3 +10,4 @@ res://scenes/saver_loader.gd
 res://load_game/load_game.gd
 res://scenes/civilization2050.gd
 res://scenes/global_state.gd
+res://scenes/camera_2d.gd

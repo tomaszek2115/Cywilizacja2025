@@ -67,7 +67,12 @@ script = ExtResource("2_8h7o6")
 modulate = Color(1, 1, 1, 0.588235)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-4.16666, -3.05176e-05)
+zoom = Vector2(2, 2)
+limit_left = 0
+limit_top = -480
+limit_right = 960
+limit_bottom = 0
+editor_draw_limits = true
 script = ExtResource("12_3yfh1")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -244,10 +249,10 @@ vertical_alignment = 1
 
 [node name="button_close" type="Button" parent="CanvasLayer/shop_panel"]
 layout_mode = 0
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 84.0
-offset_bottom = 80.0
+offset_left = -4.0
+offset_top = 8.0
+offset_right = 120.0
+offset_bottom = 112.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_5p2bo")
 theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_yu0c1")
 theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_h5ufm")
@@ -339,9 +344,9 @@ text = "save game"
 [node name="button_pause" type="Button" parent="CanvasLayer"]
 offset_left = 15.0
 offset_top = 15.0
-offset_right = 73.0
-offset_bottom = 73.0
-scale = Vector2(0.6, 0.6)
+offset_right = 75.0
+offset_bottom = 76.0
+scale = Vector2(1.5, 1.5)
 theme = SubResource("Theme_78aqr")
 icon = ExtResource("14_m6pas")
 
@@ -431,9 +436,9 @@ text = "save slot 3"
 [node name="button_return" type="Button" parent="SavingLayer"]
 offset_left = 15.0
 offset_top = 15.0
-offset_right = 53.0
-offset_bottom = 53.0
-scale = Vector2(0.3, 0.3)
+offset_right = 123.0
+offset_bottom = 123.0
+scale = Vector2(0.8, 0.8)
 theme = SubResource("Theme_78aqr")
 icon = ExtResource("12_7aq7a")
 
