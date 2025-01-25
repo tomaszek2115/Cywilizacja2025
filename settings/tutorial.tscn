@@ -1,0 +1,79 @@
+[gd_scene load_steps=9 format=3 uid="uid://c55k0apu8k2xw"]
+
+[ext_resource type="Texture2D" uid="uid://dv0s8x4urndpm" path="res://assets/background.png" id="1_746k3"]
+[ext_resource type="FontFile" uid="uid://52kqfxtygux6" path="res://assets/upheavtt.ttf" id="2_46c6v"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hli1w"]
+texture = ExtResource("1_746k3")
+modulate_color = Color(0.635294, 0.635294, 0.635294, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6nhya"]
+
+[sub_resource type="SystemFont" id="SystemFont_gl8gh"]
+subpixel_positioning = 0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jr86u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d207w"]
+bg_color = Color(1, 1, 1, 0.223529)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.184314)
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bymm8"]
+bg_color = Color(1, 1, 1, 0.509804)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.184314)
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
+
+[node name="Tutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 480.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_hli1w")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 49.0
+offset_right = 888.0
+offset_bottom = 331.0
+theme_override_fonts/normal_font = ExtResource("2_46c6v")
+theme_override_font_sizes/normal_font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6nhya")
+bbcode_enabled = true
+text = "[center] your goal is to conquer the whole map faster than your opponent
+
+you can move your units by clicking at them and at the dot showing an available move
+
+to open a shop panel click an empty tile in which you want to make a purchase
+
+your turn ends after moving a unit"
+
+[node name="Button" type="Button" parent="Panel"]
+custom_minimum_size = Vector2(190, 50)
+offset_left = 375.0
+offset_top = 376.0
+offset_right = 565.0
+offset_bottom = 426.0
+size_flags_vertical = 3
+theme_override_fonts/font = SubResource("SystemFont_gl8gh")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jr86u")
+theme_override_styles/hover = SubResource("StyleBoxFlat_d207w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_d207w")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bymm8")
+text = "Got it!"
