@@ -1,5 +1,6 @@
 extends Node
 
+@onready var button_skip: Button = $"../CanvasLayer/button_skip"
 @onready var button_save: Button = $"../CanvasLayer/button_save"
 @onready var button_exit: Button = $"../CanvasLayer/button_exit"
 @onready var saver_loader: SaverLoader = %SaverLoader
@@ -25,6 +26,7 @@ func _on_button_pause_pressed() -> void:
 		button_exit.visible = true
 		pause_label.visible = true
 		score_label.visible = false
+		button_skip.visible = false
 		budget_player_1.visible = false
 		budget_player_2.visible = false
 		board.modulate = Color("#a2a2a2")
@@ -36,6 +38,7 @@ func _on_button_pause_pressed() -> void:
 		button_exit.visible = false
 		pause_label.visible = false
 		score_label.visible = true
+		button_skip.visible = true
 		budget_player_1.visible = true
 		budget_player_2.visible = true
 		board.modulate = Color("ffffff")

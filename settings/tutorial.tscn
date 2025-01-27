@@ -1,79 +1,85 @@
-[gd_scene load_steps=9 format=3 uid="uid://c55k0apu8k2xw"]
+[gd_scene load_steps=12 format=3 uid="uid://chwehwkgqbp7n"]
 
 [ext_resource type="Texture2D" uid="uid://dv0s8x4urndpm" path="res://assets/background.png" id="1_746k3"]
+[ext_resource type="Script" path="res://settings/tutorial.gd" id="1_qkp6r"]
+[ext_resource type="Script" path="res://settings/settings.gd" id="1_y6sxd"]
 [ext_resource type="FontFile" uid="uid://52kqfxtygux6" path="res://assets/upheavtt.ttf" id="2_46c6v"]
+[ext_resource type="Texture2D" uid="uid://04bvrsorpfs2" path="res://assets/cross.png" id="5_4n1tv"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hli1w"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jsg11"]
 texture = ExtResource("1_746k3")
 modulate_color = Color(0.635294, 0.635294, 0.635294, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6nhya"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d377r"]
 
-[sub_resource type="SystemFont" id="SystemFont_gl8gh"]
-subpixel_positioning = 0
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ve1rr"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jr86u"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0oc8r"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d207w"]
-bg_color = Color(1, 1, 1, 0.223529)
-border_color = Color(0.8, 0.8, 0.8, 0)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_color = Color(0, 0, 0, 0.184314)
-shadow_size = 5
-shadow_offset = Vector2(0, 3)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iyqck"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bymm8"]
-bg_color = Color(1, 1, 1, 0.509804)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_color = Color(0, 0, 0, 0.184314)
-shadow_size = 5
-shadow_offset = Vector2(0, 3)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g5qof"]
 
-[node name="Tutorial" type="Control"]
+[node name="tutorial" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qkp6r")
 
 [node name="Panel" type="Panel" parent="."]
-layout_mode = 0
-offset_right = 960.0
-offset_bottom = 480.0
-theme_override_styles/panel = SubResource("StyleBoxTexture_hli1w")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_jsg11")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
-layout_mode = 0
-offset_left = 64.0
-offset_top = 49.0
-offset_right = 888.0
-offset_bottom = 331.0
-theme_override_fonts/normal_font = ExtResource("2_46c6v")
-theme_override_font_sizes/normal_font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxEmpty_6nhya")
-bbcode_enabled = true
-text = "[center] your goal is to conquer the whole map faster than your opponent
+[node name="Label" type="Label" parent="Panel"]
+material = SubResource("ShaderMaterial_d377r")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -118.0
+offset_right = 300.0
+offset_bottom = 118.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.32549)
+theme_override_constants/line_spacing = 23
+theme_override_constants/shadow_offset_x = 6
+theme_override_constants/shadow_offset_y = 4
+theme_override_fonts/font = ExtResource("2_46c6v")
+theme_override_font_sizes/font_size = 19
+text = "We do not collect any personal data.
+ We collect only gameplay data (game progress) to enhance your experience.
+The game uses the \"Upheaval\" font by Brian Kent and \"Glorious morning\"
+ audio by waterflame, which are free to use under a freeware license.
+All graphics and artwork in Civilization 2050 were created by us.
+ Unauthorized use or reproduction of any assets is prohibited without prior permission."
+horizontal_alignment = 1
+vertical_alignment = 1
 
-you can move your units by clicking at them and at the dot showing an available move
+[node name="BackButton" type="Button" parent="Panel"]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 120.0
+offset_bottom = 120.0
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 33
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ve1rr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_0oc8r")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_iyqck")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_g5qof")
+icon = ExtResource("5_4n1tv")
+script = ExtResource("1_y6sxd")
 
-to open a shop panel click an empty tile in which you want to make a purchase
-
-your turn ends after moving a unit"
-
-[node name="Button" type="Button" parent="Panel"]
-custom_minimum_size = Vector2(190, 50)
-offset_left = 375.0
-offset_top = 376.0
-offset_right = 565.0
-offset_bottom = 426.0
-size_flags_vertical = 3
-theme_override_fonts/font = SubResource("SystemFont_gl8gh")
-theme_override_font_sizes/font_size = 21
-theme_override_styles/focus = SubResource("StyleBoxEmpty_jr86u")
-theme_override_styles/hover = SubResource("StyleBoxFlat_d207w")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_d207w")
-theme_override_styles/normal = SubResource("StyleBoxFlat_bymm8")
-text = "Got it!"
+[connection signal="pressed" from="Panel/BackButton" to="." method="_on_back_button_pressed"]

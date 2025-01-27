@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://bq71s72gpl80u"]
+[gd_scene load_steps=19 format=3 uid="uid://bq71s72gpl80u"]
 
 [ext_resource type="Texture2D" uid="uid://bwi4x6re1nk48" path="res://main_menu/background.png" id="1_eqx0a"]
 [ext_resource type="Script" path="res://load_game/load_game.gd" id="1_txkhm"]
 [ext_resource type="FontFile" uid="uid://52kqfxtygux6" path="res://assets/upheavtt.ttf" id="3_j3f88"]
+[ext_resource type="Texture2D" uid="uid://04bvrsorpfs2" path="res://assets/cross.png" id="4_ecg07"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ibc07"]
 texture = ExtResource("1_eqx0a")
@@ -98,29 +99,36 @@ vertical_alignment = 1
 
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 1
-offset_right = 53.0
-offset_bottom = 46.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 120.0
+offset_bottom = 120.0
+scale = Vector2(0.5, 0.5)
 theme_override_font_sizes/font_size = 33
 theme_override_styles/focus = SubResource("StyleBoxEmpty_m8l2n")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_fuc5a")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_ppsfj")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_232tr")
-text = "⬅️"
+icon = ExtResource("4_ecg07")
 
 [node name="SettingsButton" type="Button" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -53.0
-offset_bottom = 54.0
+offset_left = -100.0
+offset_top = 20.0
+offset_right = -47.0
+offset_bottom = 74.0
 grow_horizontal = 0
+scale = Vector2(1.5, 1.5)
 theme_override_font_sizes/font_size = 33
 theme_override_styles/focus = SubResource("StyleBoxEmpty_6kw3c")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_fxj7o")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_hmopm")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_na8ed")
-text = "⚙️"
+text = "⚙"
 
 [node name="LoadButton1" type="Button" parent="."]
 layout_mode = 1

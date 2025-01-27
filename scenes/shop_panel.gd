@@ -1,16 +1,15 @@
 extends Panel
 
 func _on_button_units_1_pressed() -> void:
-	print("pressed")
-	GlobalState.current_item = 1
+	GlobalState.current_item = 11
 	GlobalState.value = 100
 
 func _on_button_units_2_pressed() -> void:
-	GlobalState.current_item = 2
+	GlobalState.current_item = 12
 	GlobalState.value = 150
 
 func _on_button_units_3_pressed() -> void:
-	GlobalState.current_item = 3
+	GlobalState.current_item = 13
 	GlobalState.value = 200
 
 func _on_button_city_1_pressed() -> void:

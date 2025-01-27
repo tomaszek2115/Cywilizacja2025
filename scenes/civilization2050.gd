@@ -30,6 +30,7 @@ const TURN_RED = preload("res://assets/turn_red.png")
 
 const PIECE_MOVE = preload("res://assets/piece_move.png")
 
+@onready var winning_label: Label = $CanvasLayer/winning_label
 @onready var canvaslayer = $CanvasLayer
 @onready var characters = $characters
 @onready var turn = $turn
@@ -40,7 +41,9 @@ const PIECE_MOVE = preload("res://assets/piece_move.png")
 @onready var budget_player2 = $CanvasLayer/budget_player2
 @onready var message = $CanvasLayer/message
 @onready var saver_loader: SaverLoader = %SaverLoader
-
+@onready var button_exit: Button = $CanvasLayer/button_exit
+@onready var button_skip: Button = $CanvasLayer/button_skip
+@onready var button_pause: Button = $CanvasLayer/button_pause
 
 #Variables
 var board : Array
@@ -62,10 +65,10 @@ func _ready() -> void:
 	if GlobalState.is_loaded == 0:
 		
 		board.append([0,0,0,0,0,0,0,0,0,0,0,0])
-		board.append([0,3,0,0,0,0,0,0,0,0,-7,0])
-		board.append([0,2,0,0,0,0,0,0,0,0,-3,0]) #+ is blue
-		board.append([0,1,0,0,0,0,0,0,0,0,-2,0]) #- is red 
-		board.append([0,7,0,0,0,0,0,0,0,0,-1,0])
+		board.append([0,0,0,0,0,0,0,0,0,0,0,0])
+		board.append([0,0,0,0,0,0,0,0,0,0,0,0]) #+ is blue
+		board.append([0,0,0,0,0,0,0,0,0,0,0,0]) #- is red 
+		board.append([0,7,0,0,0,0,0,0,0,0,-7,0])
 		board.append([0,0,0,0,0,0,0,0,0,0,0,0])
 		
 		# stworz tabele ownership
@@ -106,7 +109,6 @@ func is_adjacent_to_occupied(pos: Vector2) -> bool:
 func _input(event):
 	if event is InputEventMouseButton && event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			print("click")
 			if is_mouse_out():
 				close_shop()
 				return
@@ -127,7 +129,7 @@ func _input(event):
 				return
 			
 			# logika poruszania sie
-			if !state && ((blue && board[var2][var1] == 1) || (!blue && board[var2][var1] == -1) || (blue && board[var2][var1] == 2) || (blue && board[var2][var1] == 3) || (blue && board[var2][var1] == 4) || (!blue && board[var2][var1] == -2) || (!blue && board[var2][var1] == -3) || (!blue && board[var2][var1] == -4)):
+			if !state && ((blue && board[var2][var1] == 11) || (!blue && board[var2][var1] == -11) || (blue && board[var2][var1] == 12) || (blue && board[var2][var1] == 13) || (blue && board[var2][var1] == 4) || (!blue && board[var2][var1] == -12) || (!blue && board[var2][var1] == -13) || (!blue && board[var2][var1] == -4)):
 				selected_piece = Vector2(var2, var1)
 				show_options()
 				state = true
@@ -149,32 +151,32 @@ func display_board():
 	for i in MAP_HEIGHT:
 		for j in MAP_WIDTH:
 			var square_holder = TEXTURE_HOLDER.instantiate()
-			add_child(square_holder)  # Add squares directly under the parent node
+			add_child(square_holder)
 			square_holder.global_position = Vector2(j * CELL_WIDTH + (CELL_WIDTH / 2), -i * CELL_WIDTH - (CELL_WIDTH / 2))
 			
 			match ownership[i][j]:
-				-1, -2, -3, -4, -5, -6, -7:
+				-1:
 					square_holder.texture = RED_SQUARE
-				1, 2, 3, 4, 5, 6, 7:
+				1:
 					square_holder.texture = BLUE_SQUARE
-				_:
+				0:
 					square_holder.texture = null
 			
 			var holder = TEXTURE_HOLDER.instantiate()
 			characters.add_child(holder)
 			holder.global_position = Vector2(j * CELL_WIDTH + (CELL_WIDTH / 2), -i * CELL_WIDTH - (CELL_WIDTH / 2))
 			match board[i][j]:
-				-1: holder.texture = UNITS_RED_1
-				-2: holder.texture = UNITS_RED_2
-				-3: holder.texture = UNITS_RED_3
+				-11: holder.texture = UNITS_RED_1
+				-12: holder.texture = UNITS_RED_2
+				-13: holder.texture = UNITS_RED_3
 				-4: holder.texture = CITY_1
 				-5: holder.texture = CITY_2
 				-6: holder.texture = CITY_3
 				-7: holder.texture = CAPITAL
 				0: holder.texture = null
-				1: holder.texture = UNITS_BLUE_1
-				2: holder.texture = UNITS_BLUE_2
-				3: holder.texture = UNITS_BLUE_3
+				11: holder.texture = UNITS_BLUE_1
+				12: holder.texture = UNITS_BLUE_2
+				13: holder.texture = UNITS_BLUE_3
 				4: holder.texture = CITY_1
 				5: holder.texture = CITY_2
 				6: holder.texture = CITY_3
@@ -222,6 +224,13 @@ func set_move(var2, var1):
 	delete_dots()
 	state = false
 
+func skip_turn():
+	blue = !blue
+	display_board()
+	update_score_display()
+	update_budget()
+	state = false
+
 func calculate_score():
 	var blue_count = 0
 	var red_count = 0
@@ -246,13 +255,25 @@ func update_score_display():
 	var red_percentage = scores[1]
 	
 	#check for win condition
-	if blue_percentage == 100:
-		score_label.bbcode_text = "[center][color=blue]GOOD GAME\nBLUE WINS![/color][/center]"
-		disable_gameplay() # stop further actions
+	if red_percentage == 0:
+		winning_label.show()
+		button_exit.show()
+		score_label.hide()
+		budget_player1.hide()
+		budget_player2.hide()
+		button_skip.hide()
+		button_pause.hide()
+		disable_gameplay()
 		return
-	elif red_percentage == 100:
-		score_label.bbcode_text = "[center][color=red]GOOD GAME!\nRED WINS![/color][/center]"
-		disable_gameplay()  # stop further actions
+	elif blue_percentage == 0:
+		winning_label.show()
+		button_exit.show()
+		score_label.hide()
+		budget_player1.hide()
+		budget_player2.hide()
+		button_skip.hide()
+		button_pause.hide()
+		disable_gameplay()
 	
 	# determine turn text based on which player's turn it is
 	var turn_text = "BLUE TURN" if blue else "RED TURN"
@@ -265,9 +286,6 @@ func update_score_display():
 	formatted_text += "[color=red]" + str(round(red_percentage)) + "%[/color]"
 	formatted_text += "[/center]"
 	score_label.bbcode_text = formatted_text
-	
-
-
 
 # Function to stop the gameplay
 func disable_gameplay():
@@ -278,9 +296,9 @@ func disable_gameplay():
 func get_moves():
 	var _moves = []
 	match abs(board[selected_piece.x][selected_piece.y]):
-		1: _moves = get_basic_moves()
-		2: _moves = get_basic_moves()
-		3: _moves = get_basic_moves()
+		11: _moves = get_basic_moves()
+		12: _moves = get_basic_moves()
+		13: _moves = get_basic_moves()
 	return _moves
 
 func is_valid_position(pos : Vector2):
@@ -292,6 +310,7 @@ func is_empty(pos : Vector2):
 	return false
 	#if blue (white) turn blue=true: enemy index is negative
 	#if red (black) turn blue=false: enemy index is positive
+	
 func is_enemy(pos : Vector2):
 	if blue && board[pos.x][pos.y] < 0 || !blue && board[pos.x][pos.y] > 0: return true
 	return false
@@ -403,3 +422,6 @@ func update_loaded_budget():
 " + str(budget_p1) + "$"
 	budget_player2.bbcode_text = "[center]player 2
 " + str(budget_p2) + "$"
+
+func _on_button_skip_pressed() -> void:
+	skip_turn()

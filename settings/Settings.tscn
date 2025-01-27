@@ -1,8 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://cdvrglje17dnq"]
+[gd_scene load_steps=19 format=3 uid="uid://cdvrglje17dnq"]
 
 [ext_resource type="Script" path="res://settings/settings.gd" id="1_455bt"]
 [ext_resource type="Texture2D" uid="uid://dv0s8x4urndpm" path="res://assets/background.png" id="1_bt241"]
 [ext_resource type="FontFile" uid="uid://52kqfxtygux6" path="res://assets/upheavtt.ttf" id="2_g8gjm"]
+[ext_resource type="Texture2D" uid="uid://04bvrsorpfs2" path="res://assets/cross.png" id="4_qttmc"]
+[ext_resource type="Script" path="res://settings/slider.gd" id="4_tjlsm"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jsg11"]
 texture = ExtResource("1_bt241")
@@ -69,6 +71,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_jsg11")
+metadata/_edit_use_anchors_ = true
 
 [node name="GridContainer" type="GridContainer" parent="Panel"]
 layout_mode = 1
@@ -96,7 +99,11 @@ text = "Game Volume"
 
 [node name="Slider" type="HSlider" parent="Panel/GridContainer"]
 layout_mode = 2
-value = 1.0
+max_value = 1.0
+step = 0.001
+value = 0.5
+script = ExtResource("4_tjlsm")
+bus_name = "Master"
 
 [node name="Label2" type="Label" parent="Panel/GridContainer"]
 layout_mode = 2
@@ -105,7 +112,7 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_su5yy")
 text = "Help"
 
-[node name="Button2" type="Button" parent="Panel/GridContainer"]
+[node name="tutorial_button" type="Button" parent="Panel/GridContainer"]
 custom_minimum_size = Vector2(190, 50)
 layout_mode = 2
 size_flags_vertical = 3
@@ -124,7 +131,7 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ctcbg")
 text = "Privacy Policy"
 
-[node name="Button" type="Button" parent="Panel/GridContainer"]
+[node name="privacy_button" type="Button" parent="Panel/GridContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 3
@@ -161,16 +168,21 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BackButton" type="Button" parent="Panel"]
-layout_mode = 0
-offset_right = 53.0
-offset_bottom = 46.0
+layout_mode = 1
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 120.0
+offset_bottom = 120.0
+scale = Vector2(0.5, 0.5)
 theme_override_font_sizes/font_size = 33
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ve1rr")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_0oc8r")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_iyqck")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_g5qof")
-text = "⬅️"
+icon = ExtResource("4_qttmc")
 script = ExtResource("1_455bt")
 
-[connection signal="value_changed" from="Panel/GridContainer/Slider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="value_changed" from="Panel/GridContainer/Slider" to="Panel/GridContainer/Slider" method="_on_value_changed"]
+[connection signal="pressed" from="Panel/GridContainer/tutorial_button" to="." method="_on_tutorial_button_pressed"]
+[connection signal="pressed" from="Panel/GridContainer/privacy_button" to="." method="_on_privacy_button_pressed"]
 [connection signal="pressed" from="Panel/BackButton" to="." method="_on_back_to_menu_button_pressed"]

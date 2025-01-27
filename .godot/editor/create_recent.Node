@@ -1,6 +1,8 @@
+Label
+AudioStreamPlayer
+AudioStreamPlayer2D
 Button
 RichTextLabel
-Label
 Panel
 Control
 CanvasLayer
@@ -10,5 +12,3 @@ AnimationPlayer
 Timer
 TextureButton
 Container
-ItemList
-Node2D
